@@ -78,5 +78,10 @@ public class MemberController {
 //		memberService.editProcess(memberDTO);
 //		return "redirect:/login.do";
 //	}
+	
+	@RequestMapping(value="member/cart.do")
+	public String cart() {
+		return "cart";
+	}
 
 } // end class

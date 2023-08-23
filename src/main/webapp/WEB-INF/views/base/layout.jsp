@@ -14,9 +14,7 @@
 </head>
 
 <body>
-	<div class="header">
-		<tiles:insertAttribute name="header" />
-	</div>
+	<tiles:insertAttribute name="header" />
 	
 	<div class="container">
 		<div class="row mt-5 mx-5">
