@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+       
+<tiles-definitions>
+	<definition name="defaultLayout" template="/WEB-INF/views/base/layout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="content" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/base/footer.jsp" />
+	</definition>	
+
+	<definition name="mainhome" extends="defaultLayout">
+		<put-attribute name="management" value="관리자 화면" />
+		<put-attribute name="WEB-INF/views/member/management.jsp" />
+	</definition>
+</tiles-definitions>

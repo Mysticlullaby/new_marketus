@@ -23,6 +23,7 @@
 				<value>classpath:mapper/shopMapper.xml</value>
 				<value>classpath:mapper/memberMapper.xml</value>
 				<value>classpath:mapper/storeMapper.xml</value>
+				<value>classpath:mapper/mgpageMapper.xml</value>
 			</list>
 		</property>
 	</bean>
