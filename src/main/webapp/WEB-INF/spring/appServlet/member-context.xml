@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- MemberDaoImp 빈 선언-->
+	<bean id ="memberDAO" class="member.dao.MemberDaoImp">
+		<property name="sqlSession" ref="sqlSession" />	
+	</bean>
+	
+	<!-- MemberServiceImp 빈 선언-->
+	<bean id = "MemberService" class = "member.service.MemberServiceImp">
+		<property name="memberDao" ref="memberDAO" />
+	</bean>
+
+	<!-- MemberController 빈 선언-->
+	<bean class="member.controller.MemberController" >
+		<property name="memberService" ref="MemberService" /> 
+	</bean> 	 
+	<!-- <property>는 다른 클래스의 객체를 멤버변수로 가지고 있을 때 선언해줘야 함 -->
+
+
+</beans>

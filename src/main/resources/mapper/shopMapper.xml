@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="shop">
+	<select id="list" parameterType="shop.dto.ShopPageDTO" resultType="shop.dto.ShopDTO">
+		<![CDATA[
+			SELECT b.*
+			FROM(SELECT rownum as rm, a.*
+			     FROM (SELECT *
+			           FROM product
+			           )a)b
+			WHERE b.rm>=#{startRow} AND b.rm<=#{endRow}
+		]]>
+	</select>
+	
+	<select id="count" resultType="int">
+		SELECT count(*) FROM product
+	</select>
+	
+	<select id="product" parameterType="int" resultType="shop.dto.ShopDTO">
+		SELECT * FROM product
+		WHERE product_id = ${product_id}
+	</select>
+</mapper>

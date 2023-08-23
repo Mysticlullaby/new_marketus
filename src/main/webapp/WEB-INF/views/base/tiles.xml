@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+       
+<tiles-definitions>
+	<definition name="defaultLayout" template="/WEB-INF/views/base/layout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/WEB-INF/views/base/header.jsp" />
+		<put-attribute name="content" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/base/footer.jsp" />
+	</definition>	
+	
+	<definition name="mainhome" extends="defaultLayout">
+		<put-attribute name="title" value="MarketUs" />
+		<put-attribute name="content" value="홈페이지" />
+	</definition>
+	
+	<definition name="login" extends="defaultLayout">
+		<put-attribute name="title" value="로그인 - MarketUS"/>
+		<put-attribute name="content" value="/WEB-INF/views/member/login.jsp"/>
+	</definition>
+	
+	<definition name="signup" extends="defaultLayout">
+		<put-attribute name="title" value="회원가입 - MarketUS"/>
+		<put-attribute name="content" value="/WEB-INF/views/member/signup.jsp"/>
+	</definition>
+
+	<definition name="store_info" extends="defaultLayout">
+		<put-attribute name="title" value="매장안내 - MarketUS"/>
+		<put-attribute name="content" value="/WEB-INF/views/store/store_info.jsp"/>
+	</definition>
+
+	<definition name="shop" extends="defaultLayout">
+		<put-attribute name="title" value="MarketUs - 마켓" />
+		<put-attribute name="content" value="/WEB-INF/views/shop/shop.jsp" />
+	</definition>
+	
+
+	<definition name="board" extends="defaultLayout">
+		<put-attribute name="title" value="QnA = MarketUS"/>
+		<put-attribute name="content" value="/WEB-INF/views/board.jsp"/>
+	</definition>
+	
+
+	<definition name="product" extends="defaultLayout">
+		<put-attribute name="title" value="MarketUs - 마켓" />
+		<put-attribute name="content" value="/WEB-INF/views/shop/product.jsp" />
+	</definition>
+	
+
+</tiles-definitions>
