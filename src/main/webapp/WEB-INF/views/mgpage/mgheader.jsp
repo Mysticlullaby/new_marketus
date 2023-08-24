@@ -16,15 +16,16 @@
     <nav class="py-2 border-bottom" style="background-color: #b6c3a2">
       <div class="container d-flex flex-wrap">
         <ul class="nav me-auto">
-          <p class="mg" style="color: white; font-size: 30px">Management</p>
+          <p style="color: white; font-size: 25px; padding-right:20px;">Management</p>
           <div>
             <a href="#"
               class="nav-link px-2"
-              style="color: white; font-weight: 600; padding: 10px">주문관리</a>
-
+              style="color: white; font-weight: 600; padding 10px; padding-right:10px;">주문관리</a>
+		  </div>
+		  <div>
             <a href="#"
               class="nav-link px-2"
-              style="color: white; font-weight: 600">리뷰관리</a>
+              style="color: white; font-weight: 600; padding 10px;">리뷰관리</a>
           </div>
         </ul>
       </div>

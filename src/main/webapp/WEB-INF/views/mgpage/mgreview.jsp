@@ -24,10 +24,9 @@
       <table class="table table-hover table-bordered">
         <thead>
           <tr style="background-color: #c5e1de">
-            <th>주문상태</th>
             <th>주문번호</th>
-            <th>회원 ID</th>
             <th>주문상품</th>
+            <th>Review</th>
           </tr>
         </thead>
         <tbody>
