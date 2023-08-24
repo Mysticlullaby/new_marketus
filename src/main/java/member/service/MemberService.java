@@ -7,7 +7,8 @@ public interface MemberService {
 	public AuthInfo signupProcess(MemberDTO dto);	
 	public AuthInfo loginProcess(MemberDTO dto);	
 	public MemberDTO editProcess(String member_id);
-	public AuthInfo editProcess(MemberDTO memberDTO);	
+	public AuthInfo editProcess(MemberDTO memberDTO);
+	public void deleteProcess(MemberDTO dto);
 } // 회원가입, 로그인, 회원정보 수정하려는 회원정보를 가져오는 단계
 
 //	member_id를 받아와서 해당 아이디를 가진 회원의 정보를 데이터베이스에서 조회

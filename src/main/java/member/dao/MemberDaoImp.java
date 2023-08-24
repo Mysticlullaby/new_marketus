@@ -1,5 +1,6 @@
 package member.dao;
 
+
 import org.mybatis.spring.SqlSessionTemplate;
 
 import member.dto.MemberDTO;
@@ -7,7 +8,7 @@ import member.dto.MemberDTO;
 public class MemberDaoImp implements MemberDAO {
 	private SqlSessionTemplate sqlSession;
 	
-	public MemberDaoImp() {		
+	public MemberDaoImp() {
 	}
 	
 	public void setSqlSession(SqlSessionTemplate sqlSession) {
@@ -32,6 +33,12 @@ public class MemberDaoImp implements MemberDAO {
 	@Override
 	public void deleteMember(MemberDTO dto) {
 		sqlSession.delete("member.deleteMember", dto);
+	}
+	
+	@Override
+	public int passwordchk(MemberDTO dto) {
+		int result = sqlSession.selectOne("member.passwordchk", dto);
+		return result;
 	}
 	
 }//end class

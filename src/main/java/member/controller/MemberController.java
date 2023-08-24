@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import member.dto.AuthInfo;
@@ -14,6 +15,8 @@ import member.service.MemberService;
 
 // http://localhost:8090/marketus/member/login.do
 // http://localhost:8090/marketus/member/signup.do
+// http://localhost:8090/marketus/member/edit.do
+// http://localhost:8090/marketus/member/delete.do
 
 @Controller
 public class MemberController {
@@ -34,7 +37,7 @@ public class MemberController {
 
 	// 회원가입 처리
 	@RequestMapping(value = "member/signup.do", method = RequestMethod.POST)
-	public String singup(MemberDTO dto) {
+	public String signup(MemberDTO dto) {
 		memberService.signupProcess(dto);
 		return "redirect:/member/login.do";
 	}
@@ -80,19 +83,41 @@ public class MemberController {
 	// 회원정보수정 처리
 	@RequestMapping(value = "member/edit.do", method = RequestMethod.POST)
 	public String edit(MemberDTO memberDTO, HttpSession httpSession) { // httpSession에 로그인한 사용자의 정보를 저장하기 떄문에 호출필요
-		AuthInfo authInfo = (AuthInfo)httpSession.getAttribute("authInfo");
-		memberDTO.setMember_id(authInfo.getMember_id()); // 회원정보 수정을 위해 입력된 memberDTO 객체에 현재 로그인한 사용자의 ID를 설정하는 역할
-		authInfo = memberService.editProcess(memberDTO); // service 객체에 edit 메서드를 호출하여 memberDTO를 기반으로 회원정보 수정 및 수정값 반환
-		httpSession.setAttribute("authInfo", authInfo);
+		AuthInfo authInfo = (AuthInfo)httpSession.getAttribute("authInfo"); 
+		memberDTO.setMember_id(authInfo.getMember_id()); // memberDTO 객체에 현재 로그인한 사용자의 id를 설정
+		authInfo = memberService.editProcess(memberDTO); // service 객체에 edit메서드를 호출하여 memberDTO를 기반으로 회원정보 수정 및 수정값 반환
+		httpSession.setAttribute("authInfo", authInfo); // httpSession 객체에 "authInfo"라는 이름으로 인증정보(authInfo 객체)를 저장
 		return "redirect:/mainhome.do";
 	}
-//	
-//	// 회원탈퇴
-//	@RequestMapping(value = "member/edit.do", method = RequestMethod.GET)
+	
+	// 회원탈퇴 폼
+	@RequestMapping(value = "member/delete.do", method = RequestMethod.GET)
+	public String delete() {
+		return "delete";
+	}
+	
+//	// 회원탈퇴 처리
+//	@RequestMapping(value = "member/delete.do", method = RequestMethod.POST)
 //	public String delete(MemberDTO memberDTO, HttpSession httpSession) {
 //		AuthInfo authInfo = (AuthInfo)httpSession.getAttribute("authInfo");
-//		
-//		return null;		
+//		memberDTO.setMember_id(authInfo.getMember_id());
+//		memberService.deleteProcess(memberDTO);
+//		httpSession.removeAttribute("authInfo"); // 세션에 저장된 회원정보 삭제
+//		return "redirect:/mainhome.do";
 //	}
+
+	@RequestMapping(value = "/delete.do", method = RequestMethod.POST)
+	public String delete(MemberDTO memberDTO, HttpSession httpSession) {
+	     AuthInfo authInfo = (AuthInfo) httpSession.getAttribute("authInfo");
+	        
+	       if (authInfo != null && authInfo.matchPassword(memberDTO)) {
+	            memberService.deleteProcess(authInfo.getMember_id()); // 서비스 메서드를 호출하여 회원 삭제 수행
+	            httpSession.removeAttribute("authInfo"); // 세션에서 인증 정보 제거
+	            
+	            return "redirect:/mainhome.do"; // 탈퇴 후 메인 페이지로 이동
+	        } else {
+	            return "delete"; // 비밀번호가 맞지 않는 경우 다시 입력 폼으로 이동
+	        }
+	}
 
 } // end class
