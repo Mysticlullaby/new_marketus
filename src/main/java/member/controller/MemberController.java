@@ -94,5 +94,10 @@ public class MemberController {
 //		
 //		return null;		
 //	}
+	
+	@RequestMapping(value="member/cart.do")
+	public String cart() {
+		return "cart";
+	}
 
 } // end class
