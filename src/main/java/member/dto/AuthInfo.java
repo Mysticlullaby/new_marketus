@@ -1,6 +1,6 @@
 package member.dto;
 
-// 로그인 성공 후 인증상태 정보를 세션에 보관할 때 사용
+//로그인 성공 후 인증상태 정보를 세션에 보관할 때 사용
 public class AuthInfo {  
 	private String member_id;
 	private String member_name;
@@ -44,6 +44,6 @@ public class AuthInfo {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}	
+	}
 	
 }//end class

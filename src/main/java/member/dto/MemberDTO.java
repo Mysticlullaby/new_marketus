@@ -103,9 +103,9 @@ public class MemberDTO {
 	public void setPoint(int point) {
 		this.point = point;
 	}
-
-	public boolean matchPassword(String password) { // 패스워드 일치여부 확인용
-		return this.password.equals(password);
+	
+	public boolean matchPassword(String memberPass) {
+		return this.password.equals(memberPass);
 	}
 	
 }//end class
