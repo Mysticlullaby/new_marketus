@@ -28,10 +28,10 @@
 		AND password=#{password}
 	</delete>
 	
-	<select id="passwordchk" resultType="int">
+	<!-- <select id="passwordchk" resultType="int">
 		SELECT COUNT(*) FROM member
 		WHERE member_id = #{member_id}
 		AND password=#{password}
-	</select>
+	</select> -->
 
 </mapper>

@@ -31,14 +31,8 @@ public class MemberDaoImp implements MemberDAO {
 	}
 	
 	@Override
-	public void deleteMember(MemberDTO dto) {
+	public void deleteMember(MemberDTO dto){
 		sqlSession.delete("member.deleteMember", dto);
-	}
-	
-	@Override
-	public int passwordchk(MemberDTO dto) {
-		int result = sqlSession.selectOne("member.passwordchk", dto);
-		return result;
 	}
 	
 }//end class

@@ -7,7 +7,6 @@ public interface MemberDAO {
 	public MemberDTO selectById(String member_id);	
 	public void updateMember(MemberDTO dto);
 	public void deleteMember(MemberDTO dto);
-	public int passwordchk(MemberDTO dto);
 }
 
 // dto: MemberDTO 객체는 업데이트할 회원 정보를 담고 있으며, 이 객체의 정보를 기반으로 데이터베이스 내의 해당 회원의 정보를 수정

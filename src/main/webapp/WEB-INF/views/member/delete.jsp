@@ -1,57 +1,49 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
-  
-<style type="text/css">
-table {
-	margin-left: auto;
-	margin-right: auto;
-	border: 2px solid black;
-}
-td {
-	border: 2px solid black
-}
-#title {
-	background-color: black
-}
-</style>
-
-<body>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<html>
+<head>	
+</head>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#submit").on("click", function(){
+				if($("#password").val()==""){
+					alert("비밀번호를 입력해주세요.");
+					$("#password").focus();
+					return false;
+				}
+			});
+		})
+	</script>
+	<body>
 	<h2 align="center">회원탈퇴</h2>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>	
-	<form method="post" action="delete.do" name="delete" onsubmit="return checkValue()">
-		<table>
-			<tr>
-				<td bgcolor="#ffbf2a">비밀번호 입력</td>
-				<td><input type="password" name="password" maxlength="50"></td>
-			</tr>
-		</table>
-	<br>
-	<br>
-	<br>
-	<br>
-		<input type="submit" class="btn btn-secondary" value="탈퇴" onclick="leave('member_id')"/> 
-		<input type="button" value="취소" class="btn btn-warning" onclick="javascript:window.location='../mainhome.do'" />
-	</form>
-	
-<script type="text/javascript">
-	function checkValue() {
-		if (!document.deleteform.password.value) {
-			alert("비밀번호를 입력하지 않았습니다.");
-			return false;
-		}
-	}
-</script>
-
-<script>
-function leave(member_id) {
-	if(window.confirm(member_id + "님 탈퇴되었습니다.")){
-	location.href="mainhome.do";
-	}
-}
-</script>
-
-</body>
-
+		<section id="container">
+			<form action="delete.do" method="post">
+				<div class="form-group has-feedback">
+					<label class="control-label" for="member_id">아이디</label>
+					<input class="form-control" type="text" id="member_id" name="member_id" value="${member.member_id}" readonly />
+				</div>
+				<br>
+				<div class="form-group has-feedback">
+					<label class="control-label" for="password">비밀번호</label>
+					<input class="form-control" type="password" id="password" name="password" />
+				</div>
+				<br>
+				<div class="form-group has-feedback">
+					<label class="control-label" for="member_name">이름</label>
+					<input class="form-control" type="text" id="member_name" name="member_name" value="${member.member_name}" readonly />
+				</div>
+				<br>
+				<div class="form-group has-feedback">
+					<button type="submit" id="submit" class="btn btn-secondary">회원탈퇴</button>
+					<button type="button" class="btn btn-warning" onclick="javascript:window.location='../mainhome.do'">취소</button>
+				</div>
+			</form>
+			<div>
+				<c:if test="${msg == false}">
+					비밀번호가 맞지 않습니다.
+				</c:if>
+			</div>
+		</section>		
+	</body>	
+</html>

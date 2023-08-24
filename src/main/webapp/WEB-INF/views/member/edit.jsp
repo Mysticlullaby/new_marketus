@@ -64,13 +64,5 @@
 		 <button type="button" class="btn btn-secondary" onclick="javascript:window.location='./delete.do'">탈퇴하기</button>
 		</div>
 	</form>
-	
-<!-- <script>
-function leave() {
-	if(window.confirm("탈퇴하시겠습니까?")){
-	location.href="./delete.do";
-	}
-}
-</script> -->
 
 </body>
