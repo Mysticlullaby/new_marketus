@@ -41,6 +41,7 @@
 			/WEB-INF/spring/appServlet/member-context.xml <!-- 멤버컨트롤러 사용을 위한 member-context.xml 등록 --> 
 			/WEB-INF/spring/appServlet/board-context.xml
 			/WEB-INF/spring/appServlet/store-context.xml
+			/WEB-INF/spring/appServlet/mgpage-context.xml
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
