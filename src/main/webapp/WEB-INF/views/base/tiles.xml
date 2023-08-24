@@ -25,6 +25,11 @@
 		<put-attribute name="title" value="회원가입 - MarketUS"/>
 		<put-attribute name="content" value="/WEB-INF/views/member/signup.jsp"/>
 	</definition>
+	
+	<definition name="edit" extends="defaultLayout">
+		<put-attribute name="title" value="회원정보수정 - MarketUS"/>
+		<put-attribute name="content" value="/WEB-INF/views/member/edit.jsp"/>
+	</definition>
 
 	<definition name="store_info" extends="defaultLayout">
 		<put-attribute name="title" value="매장안내 - MarketUS"/>
@@ -34,14 +39,12 @@
 	<definition name="shop" extends="defaultLayout">
 		<put-attribute name="title" value="마켓 - MarketUS" />
 		<put-attribute name="content" value="/WEB-INF/views/shop/shop.jsp" />
-	</definition>
-	
+	</definition>	
 
 	<definition name="board" extends="defaultLayout">
 		<put-attribute name="title" value="QnA - MarketUS"/>
 		<put-attribute name="content" value="/WEB-INF/views/board.jsp"/>
-	</definition>
-	
+	</definition>	
 
 	<definition name="product" extends="defaultLayout">
 		<put-attribute name="title" value="마켓 - MarketUS" />
@@ -52,5 +55,5 @@
 		<put-attribute name="title" value="장바구니 - 마켓" />
 		<put-attribute name="content" value="/WEB-INF/views/member/cart.jsp" />
 	</definition>
-	
+
 </tiles-definitions>

@@ -24,12 +24,8 @@ function goToSignupPage() {
 }
 </script> 
 
- <c:if test="${not empty errorMessage}">
+<c:if test="${not empty errorMessage}">
     <script>
     alert('${errorMessage}');
     </script>
-              
-     <%-- <div class="errorMessage" style='width:500px;height:500px; position:fixed; top:200px; left:300px;background-color:yellow'>      
-        <p>${errorMessage}</p>    
-      </div> --%>
 </c:if>
