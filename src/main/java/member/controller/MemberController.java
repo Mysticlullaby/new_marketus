@@ -100,6 +100,7 @@ public class MemberController {
 	@RequestMapping(value = "member/delete.do", method = RequestMethod.POST)
 	public String delete(MemberDTO memberDTO, AuthInfo authInfo, HttpSession httpSession, RedirectAttributes rttr) {
 		
+		
 		AuthInfo member = (AuthInfo) httpSession.getAttribute("authInfo"); // 세션에서 가져온 authInfo 데이터를 "member"라는 변수에 저장
 		String sessionPass = member.getPassword(); // member에서 패스워드를 가져와서 sessionPass 변수에 저장
 		String memberpass = memberDTO.getPassword(); // user가 입력한 패스워드를 memberDTO에서 가져와서 memberpass 변수에 저장
