@@ -5,7 +5,6 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.fileupload.FileUpload;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import board.dto.BoardDTO;
 import board.dto.PageDTO;
 import board.service.BoardService;
+import common.file.FileUpload;
 import member.dto.AuthInfo;
 
 //http://localhost:8090/marketus/board/list.do

@@ -1,16 +1,16 @@
 package board.dto;
 
 public class PageDTO {
-	private int currentPage;
-	private int totalCount;
-	private int blockCount = 10;
-	private int blockPage = 5;
-	private int totalPage;
-	private int startRow;
-	private int endRow;
-	private int startPage;
-	private int endPage;
-	private int number;
+	private int currentPage; //현재 페이지
+	private int totalCount; //총 레코드수
+	private int blockCount = 10; //한 페이지에 보여줄 레코드 수
+	private int blockPage = 5; //한 블록에 보여줄 레코드 수
+	private int totalPage; //총페이지수
+	private int startRow; //해당 페이지의 시작 레코드 번호
+	private int endRow; //해당 페이지의 끝 레코드 번호
+	private int startPage; //한 블록의 시작 페이지 번호
+	private int endPage; //한 블록의 끝 페이지 번호
+	private int number; //
 	
 	private String searchKey;
 	private String searchWord;
@@ -24,6 +24,29 @@ public class PageDTO {
 	public PageDTO(int currentPage, int totalCount) {
 		this.currentPage = currentPage;
 		this.totalCount = totalCount;
+		
+		//총페이지수
+		totalPage = totalCount/blockCount + (totalCount % blockCount == 0? 0 : 1);
+		if (totalPage<currentPage)
+			this.currentPage = totalPage;
+		
+		//시작레코드
+		startRow = (this.currentPage - 1) * blockCount + 1;
+		
+		//끝 레코드
+		endRow = startRow + blockCount -1;
+		
+		//시작페이지
+		startPage = (int) ((this.currentPage -1)/blockPage) * blockPage + 1;
+		
+		//끝페이지
+		endPage = startPage + blockPage - 1;
+		if(totalPage<endPage)
+			endPage=totalPage;
+		
+		//리스트에서 출력번호
+		number = totalCount - (this.currentPage - 1) * blockCount;
+		
 	}
 
 

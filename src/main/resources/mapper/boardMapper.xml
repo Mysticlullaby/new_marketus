@@ -1,1 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="board">
+	<select id="count" resultType="int">
+		SELECT count(*) from board
+	</select>
+	
+	<resultMap type="board.dto.BoardDTO" id="listSelect" 
+		autoMapping="true">
+		<association property="memberDTO"
+			javaType="member.dto.MemberDTO">
+			<result column="member_id" property="member_id"/>		
+		</association>	
+	</resultMap>
+	
+	<select id="list" parameterType="board.dto.PageDTO"
+		resultMap="listSelect">
+<![CDATA[
+	SELECT b.*
+	FROM(SELECT rownum as rm, a.*
+		FROM(SELECT b.*, m.member_id FROM board b, member m
+		WHERE b.member_id=m.member_id
+		ORDER BY ref DESC, re_step ASC)a)b
+	WHERE b.rm>=#{startRow} AND b.rm<=#{endRow}
+]]>
+	</select>
+	
+	<insert id="save" parameterType="board.dto.BoardDTO">
+		INSERT INTO board(num, subject, upload_date, readcount, ref, re_step,
+		re_level, content, attachment, member_id)
+		VALUES(board_num_seq.nextval,
+		#{subject},
+		sysdate, 0,
+		<choose>
+			<when test="ref==0">
+				board_num_seq.nextval,
+			</when>
+			<otherwise>
+				#{ref},
+			</otherwise>
+		</choose>
+		#{re-step}, #{re_level}, #{content, jdbcType=VARCHAR2}, 
+		#{attachment, jdbcType=VARCHAR2}, #{member_id, jdbcType=VARCHAR2}
+		)
+	</insert>
+
+	<update id="readCount" parameterType="int">
+		UPDATE board
+		SET readCount = readCount + 1
+		WHERE num=#{num}
+	</update>
+	
+	<select id="content" parameterType="int"
+		resultMap="listSelect">
+		SELECT b.*, m.member_id FROM board b, member m
+		WHERE b.member_id=m.member_id(+)
+		AND num=#{num}
+	</select>
+	
+	<update id="reStepCount" parameterType="board.dto.BoardDTO"> <!-- 대댓글 -->
+		UPDATE board
+		SET re_step = re_step + 1
+		WHERE ref=#{ref} AND re_step > #{re_step}
+	</update>
+	
+	<select id="getFile" parameterType="int" resultType="string">
+		SELECT attachment
+		FROM board
+		WHERE num = #{num}
+	</select>
+	
+	<update id="update" parameterType="board.dto.BoardDTO">
+		UPDATE board
+		SET subject=#{subject}, content=#{content}
+		<if test="attachment != null">
+			, attachment=#{attachment}
+		</if>
+		WHERE num=#{num}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM board
+		WHERE num=#{num}
+	</delete>
+		
+</mapper>

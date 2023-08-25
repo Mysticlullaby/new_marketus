@@ -16,6 +16,7 @@ public class BoardDTO {
 	
 	private MultipartFile filename; //form페이지에서 첨부파일을 받아서 처리해주는 멤버변수
 
+	
 	public int getNum() {
 		return num;
 	}
@@ -72,12 +73,12 @@ public class BoardDTO {
 		this.content = content;
 	}
 
-	public String getIp() {
-		return ip;
-	}
-
 	public void setIp(String ip) {
 		this.ip = ip;
+	}
+	
+	public String getIP() {
+		return ip;
 	}
 
 	public String getMember_id() {
