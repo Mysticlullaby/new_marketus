@@ -29,9 +29,20 @@
 	        $('#totalPrice').text((totalPrice*count).toLocaleString());
 	    });
 	    
-	    $('#addCart').click(function(){
-			$('#frm').attr('action', 'addCart.do').submit();
-		});
+	    $('#addCart').click(function(){	
+	    	let count = $('#count').val();
+	    	let product_id = $('#product_id').val();
+	    	
+	    	$.ajax({
+	    		type: 'GET',
+	    		url: 'addCart.do?product_count='+count+'&product_id='+product_id,
+	    		success: viewMessage
+	    	});
+	    });
+
+	    function viewMessage(){
+	        alert('장바구니 추가 성공!')
+	    };
 	})
 </script> 
  
@@ -106,7 +117,7 @@
 					  <input class="btn btn-outline-success" type="button" id="addCart" value="장바구니 담기">
 					  <input class="btn btn-success" type="button" id="purchase" value="구매하기">
 					</div>	
-					  <input type="hidden" name="product_id" value="${shopDTO.product_id}" />
+					  <input type="hidden" name="product_id" id="product_id" value="${shopDTO.product_id}" />
 				</form>				
 			</div>
 		</div>
