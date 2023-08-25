@@ -16,10 +16,15 @@
 	</select>
 	<!-- select문은 parameterType(input), resultType(output) 속성 사용가능 -->
 
-	<update id="updateMember" parameterType="member.dto.MemberDTO">
+	<update parameterType="member.dto.MemberDTO" id="updateMember">
 		UPDATE member
-		SET member_name=#{member_name}, password=#{password}, address=#{address}, gender=#{gender}, age=#{age}, phone_number=#{phone_number}, email=#{email}
+		SET password=#{password}, member_name=#{member_name}, phone_number=#{phone_number}, address=#{address}, email=#{email}
 		WHERE member_id=#{member_id}
 	</update>
+	
+	<delete parameterType="member.dto.MemberDTO" id="deleteMember">
+		DELETE FROM member
+		WHERE member_id=#{member_id} 
+	</delete>
 
 </mapper>

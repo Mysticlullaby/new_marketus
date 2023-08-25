@@ -16,7 +16,7 @@ public class MgPageController {
 		this.mgPageDAO = mgPageDAO; 
 	}
 	
-	@RequestMapping(value = "/MgPage.do")
+	@RequestMapping(value = "MgPage.do")
 	public String MgpageExecute() {
 		return "mgpage";
 	}

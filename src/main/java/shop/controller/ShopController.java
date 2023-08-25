@@ -42,7 +42,6 @@ public class ShopController {
 		mav.setViewName("shop");
 		return mav;
 	}
-	
 
 	@RequestMapping(value="/shop/product.do")
 	public ModelAndView productExecute(int product_id, ModelAndView mav) {
@@ -50,4 +49,5 @@ public class ShopController {
 		mav.setViewName("product");
 		return mav;
 	}
+	
 }
