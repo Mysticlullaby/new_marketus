@@ -3,9 +3,26 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
 
+<!-- BoardController bean 선언 -->
 <bean class = "board.controller.BoardController">
-
+	<property name ="boardService" ref="boardService" />
 </bean>
 
+<!-- BoardDaoImp 빈 선언 -->
+<bean id = "boardDao" class="board.dao.BoardDaoImp">
+	<property name="sqlSession" ref="sqlSession" />
+	</bean>
+
+	<!-- BoardServiceImp 빈 선언 -->
+	<bean id="boardService" class="board.service.BoardServiceImp">
+		<property name="boardDao" ref="boardDao" />
+	</bean>
+	
+	
+	<!-- 다운로드 뷰 선언 -->
+	<bean id="download" class="board.view.BoardDownLoadView">
+		<property name="boardDao" ref="boardDao" />
+	</bean>
+	
 
 </beans>

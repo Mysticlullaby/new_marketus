@@ -8,14 +8,15 @@ import member.dto.MemberDTO;
 
 public class BoardDTO {
 	private int num, readcount, ref, re_step, re_level;
-	private String subject, content, ip, memberEmail;
-	private Date reg_date;
+	private String subject, content, ip, member_id;
+	private Date upload_date;
 	private MemberDTO memberDTO;
 	
-	private String upload; //첨부파일
+	private String attachment; //첨부파일
 	
 	private MultipartFile filename; //form페이지에서 첨부파일을 받아서 처리해주는 멤버변수
 
+	
 	public int getNum() {
 		return num;
 	}
@@ -72,28 +73,53 @@ public class BoardDTO {
 		this.content = content;
 	}
 
-	public String getIp() {
-		return ip;
-	}
-
 	public void setIp(String ip) {
 		this.ip = ip;
 	}
-
-	public String getMemberEmail() {
-		return memberEmail;
+	
+	public String getIP() {
+		return ip;
 	}
 
-	public void setMemberEmail(String memberEmail) {
-		this.memberEmail = memberEmail;
+	public String getMember_id() {
+		return member_id;
 	}
 
-	public Date getReg_date() {
-		return reg_date;
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
 	}
 
-	public void setReg_date(Date reg_date) {
-		this.reg_date = reg_date;
+	public Date getUpload_date() {
+		return upload_date;
 	}
 
+	public void setUpload_date(Date upload_date) {
+		this.upload_date = upload_date;
+	}
+
+	public MemberDTO getMemberDTO() {
+		return memberDTO;
+	}
+
+	public void setMemberDTO(MemberDTO memberDTO) {
+		this.memberDTO = memberDTO;
+	}
+
+	public String getAttachment() {
+		return attachment;
+	}
+
+	public void setAttachment(String attachment) {
+		this.attachment = attachment;
+	}
+
+	public MultipartFile getFilename() {
+		return filename;
+	}
+
+	public void setFilename(MultipartFile filename) {
+		this.filename = filename;
+	}
+
+	
 }
