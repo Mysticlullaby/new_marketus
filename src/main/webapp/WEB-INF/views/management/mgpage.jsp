@@ -30,8 +30,31 @@
             <th>주문상품</th>
           </tr>
         </thead>
-        <tbody>
-        <script></script>
-        </tbody>
-      </table>
+        <tbody id="area_tbody"></tbody></table>
+        <script>
+    	function viewMessage(res){    	
+    		$.each(res, function(index, element){
+    	        var statusText = getStatusText(element.status);
+    	        var orderID = element.order_id;
+    	        var memberID = element.member_id;
+    	        var productID = element.product_id;
+    		 $('#area_tbody').append('<tr><td>'+element.statusText+'</td><td>'+element.orderID+'</td><td>'+element.memberID+'</td><td>'+element.productID+'</td></tr>');});
+    		InOrder InProgress history   	 
+    	}
+    	
+    	function getStatusText(status) {
+    	    switch (status) {
+    	        case 'InOrder':
+    	            return '신규주문';
+    	        case 'InProgress':
+    	            return '배송중';
+    	        case 'history':
+    	            return '배송완료';
+    	        default:
+    	            return '알 수 없는 상태-확인바람';
+    	    }
+    	}
+        </script>
+    
+     
     </div>

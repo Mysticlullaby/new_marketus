@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="mgpage">
+
+<!-- 주문상태 가져오기 -->
+	<select id="state" parameterType="string" resultType="mgpage.dto.MgPageDTO">	
+		SELECT * FROM order_info
+		WHERE status LIKE #{data}
+	</select>
+	
+<!-- 주문번호 가져오기 -->
+	<select id="orderid" parameterType="string" resultType="mgpage.dto.MgPageDTO">	
+		SELECT * FROM order_info
+		WHERE order_id LIKE #{data}
+	</select>
+	
+<!-- 회원ID 가져오기 -->
+	<select id="memberid" parameterType="string" resultType="mgpage.dto.MgPageDTO">	
+		SELECT * FROM order_info
+		WHERE member_id LIKE #{data}
+	</select>
+
+<!-- 주문상품 가져오기 -->
+	<select id="productid" parameterType="string" resultType="mgpage.dto.MgPageDTO">	
+		SELECT * FROM order_info
+		WHERE product_id LIKE #{data}
+	</select>
+	
+</mapper>

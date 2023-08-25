@@ -6,5 +6,9 @@
 	<bean class="mgpage.controller.MgPageController" >
 		<!-- <property name="memberService" ref="MemberService" />  -->
 	</bean> 
+	
+	<bean class="mgpage.dao.MgPageDAOImp" id="MgpageDAO">
+		<property name="sqlSession" ref="sqlSession"/>
+	</bean>
 
 </beans>
