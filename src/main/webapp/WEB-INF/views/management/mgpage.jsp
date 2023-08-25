@@ -54,7 +54,24 @@
     	            return '알 수 없는 상태-확인바람';
     	    }
     	}
+    	
+    	function fetchAndDisplayData() {
+    	    $.ajax({
+    	        url: 'URL_여기에_매퍼_URL_입력', // 매퍼의 URL을 입력
+    	        method: 'POST', // 또는 'GET' 등 HTTP 요청 방식 선택
+    	        data: {
+    	            // 필요한 데이터 전달 (예: data: someData)
+    	        },
+    	        success: function(res) {
+    	            viewMessage(res);
+    	        },
+    	        error: function(err) {
+    	            console.error('Error:', err);
+    	        }
+    	    });
+    	}
+
+    	// fetchAndDisplayData() 함수를 호출하여 데이터 요청 및 표시 수행
+    	fetchAndDisplayData();
         </script>
-    
-     
     </div>
