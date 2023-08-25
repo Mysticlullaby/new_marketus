@@ -1,6 +1,5 @@
 package member.dao;
 
-
 import org.mybatis.spring.SqlSessionTemplate;
 
 import member.dto.MemberDTO;
@@ -16,8 +15,8 @@ public class MemberDaoImp implements MemberDAO {
 	}
 
 	@Override	
-	public int insertMember(MemberDTO dto) {
-		return sqlSession.insert("member.insertMember", dto);
+	public void insertMember(MemberDTO dto) {
+		sqlSession.insert("member.insertMember", dto);
 	} // MemberDTO에 담고있는 회원정보를 insertMember() 메서드로 넘기고, insertMember()는 회원정보를 member 테이블에 저장
 	
 	@Override

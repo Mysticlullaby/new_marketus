@@ -15,10 +15,6 @@ public class MemberServiceImp implements MemberService {
 		this.memberDao = memberDao;
 	}
 	
-//	public void signupProcess(MemberDTO dto) {
-//		memberDao.insertMember(dto);
-//	} // 회원가입 및 db 입력용 메서드
-	
 	@Override
 	public AuthInfo signupProcess(MemberDTO dto) { // 회원 가입 후에 해당 회원의 인증 정보를 생성하고 세션에 저장하기 위함
 		memberDao.insertMember(dto);
@@ -52,6 +48,6 @@ public class MemberServiceImp implements MemberService {
 	@Override
 	public void deleteProcess(MemberDTO dto) {
 		memberDao.deleteMember(dto);
-	}
+	} // 회원탈퇴 메서드
 
 }//end class

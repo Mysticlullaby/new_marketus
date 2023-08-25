@@ -21,17 +21,22 @@
 			<form action="delete.do" method="post">
 				<div class="form-group has-feedback">
 					<label class="control-label" for="member_id">아이디</label>
-					<input class="form-control" type="text" id="member_id" name="member_id" value="${member.member_id}" readonly />
+					<input class="form-control" type="text" id="member_id" name="member_id" value="${authInfo.member_id}" readonly />
 				</div>
 				<br>
 				<div class="form-group has-feedback">
 					<label class="control-label" for="password">비밀번호</label>
 					<input class="form-control" type="password" id="password" name="password" />
 				</div>
-				<br>
+				<div>
+				<c:if test="${msg == false}">
+					비밀번호가 맞지 않습니다.
+				</c:if>
+				</div>
+				<br>				
 				<div class="form-group has-feedback">
 					<label class="control-label" for="member_name">이름</label>
-					<input class="form-control" type="text" id="member_name" name="member_name" value="${member.member_name}" readonly />
+					<input class="form-control" type="text" id="member_name" name="member_name" value="${authInfo.member_name}" readonly />
 				</div>
 				<br>
 				<div class="form-group has-feedback">
@@ -39,11 +44,7 @@
 					<button type="button" class="btn btn-warning" onclick="javascript:window.location='../mainhome.do'">취소</button>
 				</div>
 			</form>
-			<div>
-				<c:if test="${msg == false}">
-					비밀번호가 맞지 않습니다.
-				</c:if>
-			</div>
+			
 		</section>		
 	</body>	
 </html>

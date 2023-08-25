@@ -98,47 +98,19 @@ public class MemberController {
 	
 	// 회원탈퇴 처리
 	@RequestMapping(value = "member/delete.do", method = RequestMethod.POST)
-	public String delete(MemberDTO memberDTO, HttpSession httpSession, RedirectAttributes rttr) {
+	public String delete(MemberDTO memberDTO, AuthInfo authInfo, HttpSession httpSession, RedirectAttributes rttr) {
 		
-		MemberDTO member = (MemberDTO) httpSession.getAttribute("memberDTO"); // 세션에서 가져온 MemberDTO 데이터를 "member"라는 변수에 저장
-		String httpsessionPass = member.getPassword(); // member에서 패스워드를 가져와서 httpsessionPass 변수에 저장
+		AuthInfo member = (AuthInfo) httpSession.getAttribute("authInfo"); // 세션에서 가져온 authInfo 데이터를 "member"라는 변수에 저장
+		String sessionPass = member.getPassword(); // member에서 패스워드를 가져와서 sessionPass 변수에 저장
 		String memberpass = memberDTO.getPassword(); // user가 입력한 패스워드를 memberDTO에서 가져와서 memberpass 변수에 저장
 		
-		if(!(httpsessionPass.equals(memberpass))) {
+		if(!(sessionPass.equals(memberpass))) {
 			rttr.addFlashAttribute("msg", false); // url에 노출되지 않고 redirect 시 데이터 전달, 받을 때 사용
 			return "redirect:/member/delete.do";
 		}
 		memberService.deleteProcess(memberDTO);
-		httpSession.invalidate();		
-		return "redirect:/mainhome.do"; // 해당 경로로 돌아가 로그아웃 상태로 전환		
-	}	
-	
+		httpSession.invalidate();
+		return "redirect:/mainhome.do"; // 해당 경로로 돌아가 로그아웃 상태로 전환
+	}
+
 } // end class
-
-
-
-
-
-//	// 회원탈퇴 처리
-//	@RequestMapping(value = "member/delete.do", method = RequestMethod.POST)
-//	public String delete(MemberDTO memberDTO, HttpSession httpSession) {
-//		AuthInfo authInfo = (AuthInfo)httpSession.getAttribute("authInfo");
-//		memberDTO.setMember_id(authInfo.getMember_id());
-//		memberService.deleteProcess(memberDTO);
-//		httpSession.removeAttribute("authInfo"); // 세션에 저장된 회원정보 삭제
-//		return "redirect:/mainhome.do";
-//	}	
-	
-//	@RequestMapping(value = "/delete.do", method = RequestMethod.POST)
-//	public String delete(MemberDTO memberDTO, HttpSession httpSession) {
-//	     AuthInfo authInfo = (AuthInfo) httpSession.getAttribute("authInfo");
-//	        
-//	       if (authInfo != null && authInfo.matchPassword(memberDTO)) {
-//	            memberService.deleteProcess(authInfo.getMember_id()); // 서비스 메서드를 호출하여 회원 삭제 수행
-//	            httpSession.removeAttribute("authInfo"); // 세션에서 인증 정보 제거
-//	            
-//	            return "redirect:/mainhome.do"; // 탈퇴 후 메인 페이지로 이동
-//	        } else {
-//	            return "delete"; // 비밀번호가 맞지 않는 경우 다시 입력 폼으로 이동
-//	        }
-//	}
