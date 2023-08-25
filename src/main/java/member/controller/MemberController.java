@@ -89,7 +89,7 @@ public class MemberController {
 		httpSession.setAttribute("authInfo", authInfo); // httpSession 객체에 "authInfo"라는 이름으로 인증정보(authInfo 객체)를 저장
 		return "redirect:/mainhome.do";
 	}
-	
+
 	// 회원탈퇴 폼
 	@RequestMapping(value = "member/delete.do", method = RequestMethod.GET)
 	public String delete() {
@@ -111,6 +111,11 @@ public class MemberController {
 		memberService.deleteProcess(memberDTO);
 		httpSession.invalidate();
 		return "redirect:/mainhome.do"; // 해당 경로로 돌아가 로그아웃 상태로 전환
+	}
+	
+	@RequestMapping(value="member/cart.do")
+	public String cart() {
+		return "cart";
 	}
 
 } // end class
