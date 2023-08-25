@@ -45,5 +45,9 @@ public class AuthInfo {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public boolean matchPassword(String password) {
+		return false;
+	}
 	
 }//end class
