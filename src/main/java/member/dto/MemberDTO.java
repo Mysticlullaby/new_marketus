@@ -15,6 +15,7 @@ public class MemberDTO {
 	private String email; // 이메일
 	private String grade; // 멤버 등급
 	private int point; // 멤버 포인트
+	private boolean rememberId; //자동로그인
 	
 	public String getMember_id() {
 		return member_id;
@@ -104,6 +105,14 @@ public class MemberDTO {
 		this.point = point;
 	}
 	
+	public boolean isRememberId() {
+		return rememberId;
+	}
+
+	public void setRememberId(boolean rememberId) {
+		this.rememberId = rememberId;
+	}
+
 	public boolean matchPassword(String memberPass) {
 		return this.password.equals(memberPass);
 	}

@@ -1,5 +1,7 @@
 package member.controller;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -50,12 +52,22 @@ public class MemberController {
 
 	// 로그인 처리
 	@RequestMapping(value = "member/login.do", method = RequestMethod.POST)
-	public ModelAndView login(MemberDTO memberDTO, HttpSession httpSession) {// httpSession에 로그인한 사용자의 정보를 저장
+	public ModelAndView login(MemberDTO memberDTO, HttpSession httpSession, HttpServletResponse hsr) {// httpSession에 로그인한 사용자의 정보를 저장
 		ModelAndView mav = new ModelAndView();
 
 		try {
 			AuthInfo authInfo = memberService.loginProcess(memberDTO);
 			httpSession.setAttribute("authInfo", authInfo); 
+			
+			Cookie rememberCookie = new Cookie("RememberId", memberDTO.getMember_id());
+			rememberCookie.setPath("/");
+			
+			if(memberDTO.isRememberId()) {
+				rememberCookie.setMaxAge(60);
+			} else {
+				rememberCookie.setMaxAge(0);
+			}
+			hsr.addCookie(rememberCookie);
 			mav.setViewName("redirect:/mainhome.do");
 		} catch (WrongPasswordException e) {
 			mav.addObject("errorMessage", e.getMessage());
@@ -98,8 +110,7 @@ public class MemberController {
 	
 	// 회원탈퇴 처리
 	@RequestMapping(value = "member/delete.do", method = RequestMethod.POST)
-	public String delete(MemberDTO memberDTO, AuthInfo authInfo, HttpSession httpSession, RedirectAttributes rttr) {
-		
+	public String delete(MemberDTO memberDTO, AuthInfo authInfo, HttpSession httpSession, RedirectAttributes rttr) {		
 		
 		AuthInfo member = (AuthInfo) httpSession.getAttribute("authInfo"); // 세션에서 가져온 authInfo 데이터를 "member"라는 변수에 저장
 		String sessionPass = member.getPassword(); // member에서 패스워드를 가져와서 sessionPass 변수에 저장
