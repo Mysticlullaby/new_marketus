@@ -10,7 +10,7 @@
       <div class="col-md-7">
         <label for="member_id" class="form-label">회원 아이디</label>
         <input
-          type="text" class="form-control" id="member_id" name="member_id" value="${memberDTO.member_id}"
+          type="text" class="form-control" id="member_id" name="member_id" value="${memberDTO.member_id}" 
           readonly>
       </div>
 	
@@ -61,16 +61,8 @@
 	  
 	   <div class="col-12">
 		 <input type="submit" class="btn btn-warning" value="수정하기" />
-		 <button type="button" class="btn btn-secondary" onclick="leave();">탈퇴하기</button>
+		 <button type="button" class="btn btn-secondary" onclick="javascript:window.location='./delete.do'">탈퇴하기</button>
 		</div>
 	</form>
-	
-<script>
-function leave() {
-	if(window.confirm("탈퇴하시겠습니까?")){
-	location.href="/member/leave.do";
-	}
-}
-</script>
 
 </body>

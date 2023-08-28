@@ -7,7 +7,7 @@ import member.dto.MemberDTO;
 public class MemberDaoImp implements MemberDAO {
 	private SqlSessionTemplate sqlSession;
 	
-	public MemberDaoImp() {		
+	public MemberDaoImp() {
 	}
 	
 	public void setSqlSession(SqlSessionTemplate sqlSession) {
@@ -15,8 +15,8 @@ public class MemberDaoImp implements MemberDAO {
 	}
 
 	@Override	
-	public int insertMember(MemberDTO dto) {
-		return sqlSession.insert("member.insertMember", dto);
+	public void insertMember(MemberDTO dto) {
+		sqlSession.insert("member.insertMember", dto);
 	} // MemberDTO에 담고있는 회원정보를 insertMember() 메서드로 넘기고, insertMember()는 회원정보를 member 테이블에 저장
 	
 	@Override
@@ -30,7 +30,7 @@ public class MemberDaoImp implements MemberDAO {
 	}
 	
 	@Override
-	public void deleteMember(MemberDTO dto) {
+	public void deleteMember(MemberDTO dto){
 		sqlSession.delete("member.deleteMember", dto);
 	}
 	
