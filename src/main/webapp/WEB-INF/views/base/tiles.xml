@@ -72,5 +72,9 @@
 		<put-attribute name="title" value="장바구니 - 마켓" />
 		<put-attribute name="content" value="/WEB-INF/views/member/cart.jsp" />
 	</definition>
-
+	
+	<definition name="pay" extends="defaultLayout">
+		<put-attribute name="title" value="주문/관리" />
+		<put-attribute name="content" value="/WEB-INF/views/pay/pay.jsp" />
+	</definition>
 </tiles-definitions>
