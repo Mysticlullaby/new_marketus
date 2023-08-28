@@ -37,11 +37,25 @@
 	</definition>
 	
 
-	<definition name="board" extends="defaultLayout">
+	<definition name="list" extends="defaultLayout">
 		<put-attribute name="title" value="QnA = MarketUS"/>
-		<put-attribute name="content" value="/WEB-INF/views/board.jsp"/>
+		<put-attribute name="content" value="/WEB-INF/views/board/list.jsp"/>
 	</definition>
 	
+	<definition name="update" extends="defaultLayout">
+		<put-attribute name="title" value="QnA = MarketUS"/>
+		<put-attribute name="content" value="/WEB-INF/views/board/update.jsp"/>
+	</definition>
+	
+	<definition name="view" extends="defaultLayout">
+		<put-attribute name="title" value="QnA = MarketUS"/>
+		<put-attribute name="content" value="/WEB-INF/views/board/view.jsp"/>
+	</definition>
+	
+	<definition name="write" extends="defaultLayout">
+		<put-attribute name="title" value="QnA = MarketUS"/>
+		<put-attribute name="content" value="/WEB-INF/views/board/write.jsp"/>
+	</definition>
 
 	<definition name="product" extends="defaultLayout">
 		<put-attribute name="title" value="MarketUs - 마켓" />

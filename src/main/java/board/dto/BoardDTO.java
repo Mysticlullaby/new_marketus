@@ -7,8 +7,8 @@ import org.springframework.web.multipart.MultipartFile;
 import member.dto.MemberDTO;
 
 public class BoardDTO {
-	private int num, readcount, ref, re_step, re_level;
-	private String subject, content, ip, member_id;
+	private int board_id, readcount, ref, re_step, re_level;
+	private String subject, content, member_id;
 	private Date upload_date;
 	private MemberDTO memberDTO;
 	
@@ -17,12 +17,13 @@ public class BoardDTO {
 	private MultipartFile filename; //form페이지에서 첨부파일을 받아서 처리해주는 멤버변수
 
 	
-	public int getNum() {
-		return num;
+
+	public int getBoard_id() {
+		return board_id;
 	}
 
-	public void setNum(int num) {
-		this.num = num;
+	public void setBoard_id(int board_id) {
+		this.board_id = board_id;
 	}
 
 	public int getReadcount() {
@@ -73,13 +74,6 @@ public class BoardDTO {
 		this.content = content;
 	}
 
-	public void setIp(String ip) {
-		this.ip = ip;
-	}
-	
-	public String getIP() {
-		return ip;
-	}
 
 	public String getMember_id() {
 		return member_id;

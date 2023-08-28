@@ -60,7 +60,7 @@ public class BoardServiceImp implements BoardService {
 		//수정할 파일이 있으면
 		if (filename != null) {
 			
-			String path = boardDao.getFile(dto.getNum());
+			String path = boardDao.getFile(dto.getBoard_id());
 			//기존 첨부 파일이 있으면
 			if (path != null) {
 				File file = new File (urlpath, path);

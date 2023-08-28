@@ -51,13 +51,13 @@ public class BoardController {
 			mav.addObject("boardList", boardService.listProcess(pdto));
 		}
 		
-		mav.setViewName("board/list");
+		mav.setViewName("list");
 		return mav;
 	}//end listExecute()
 	
 	@RequestMapping(value="/board/write.do", method=RequestMethod.GET)
 	public ModelAndView writeExecute(@ModelAttribute("dto") BoardDTO dto, @ModelAttribute("pv") PageDTO pv, ModelAndView mav) {
-		mav.setViewName("board/write");
+		mav.setViewName("write");
 		return mav; //입력한 폼을 가져온다.
 	}//end writeExecute()
 	
@@ -69,7 +69,7 @@ public class BoardController {
 			UUID random = FileUpload.saveCopyFile(file, req);
 			dto.setAttachment(random + "_" + file.getOriginalFilename());
 		}
-		dto.setIp(req.getRemoteAddr()); //답변글과 제목글이 여기까지 같다
+//		dto.setIp(req.getRemoteAddr()); //답변글과 제목글이 여기까지 같다
 		
 		AuthInfo authInfo = (AuthInfo)session.getAttribute("authInfo");
 		dto.setMember_id(authInfo.getMember_id());
@@ -82,25 +82,25 @@ public class BoardController {
 	}//end writeProExecute()
 	
 	@RequestMapping("/board/view.do")
-	public ModelAndView viewExecute(int num, int currentPage, ModelAndView mav) {
-		mav.addObject("dto", boardService.contentProcess(num));
-		mav.addObject("num", num);
-		mav.setViewName("board/view");
+	public ModelAndView viewExecute(int board_id, int currentPage, ModelAndView mav) {
+		mav.addObject("dto", boardService.contentProcess(board_id));
+		mav.addObject("board_id", board_id);
+		mav.setViewName("view");
 		return mav;
 	}//end viewExecute()
 	
 	@RequestMapping(value="/board/contentsdownload.do")
-	public ModelAndView downloadExecute(int num, ModelAndView mav) {
-		mav.addObject("num", num);
+	public ModelAndView downloadExecute(int board_id, ModelAndView mav) {
+		mav.addObject("board_id", board_id);
 		mav.setViewName("download");
 		return mav;
 	}//end downloadExecute()
 	
 	@RequestMapping(value="/board/update.do", method=RequestMethod.GET)
-	public ModelAndView updateExecute(int num, int currentPage, ModelAndView mav) {
-		mav.addObject("dto", boardService.updateSelectProcess(num));
+	public ModelAndView updateExecute(int board_id, int currentPage, ModelAndView mav) {
+		mav.addObject("dto", boardService.updateSelectProcess(board_id));
 		mav.addObject("currentPage", currentPage);
-		mav.setViewName("board/update");
+		mav.setViewName("update");
 		return mav;
 	}//end updateExecute()
 	
@@ -120,9 +120,9 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/board/delete.do")
-	public String deleteExecute(int num, int currentPage, HttpServletRequest request, RedirectAttributes ratt) {
+	public String deleteExecute(int board_id, int currentPage, HttpServletRequest request, RedirectAttributes ratt) {
 		ratt.addAttribute("currentPage", currentPage);
-		boardService.deleteProcess(num, FileUpload.urlPath(request));
+		boardService.deleteProcess(board_id, FileUpload.urlPath(request));
 		return "redirect:/board/list.do";
 	}//삭제
 	

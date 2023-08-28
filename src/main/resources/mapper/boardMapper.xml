@@ -5,7 +5,7 @@
     
 <mapper namespace="board">
 	<select id="count" resultType="int">
-		SELECT count(*) from board
+		SELECT count(*) FROM board
 	</select>
 	
 	<resultMap type="board.dto.BoardDTO" id="listSelect" 
@@ -22,14 +22,14 @@
 	SELECT b.*
 	FROM(SELECT rownum as rm, a.*
 		FROM(SELECT b.*, m.member_id FROM board b, member m
-		WHERE b.member_id=m.member_id
+		WHERE b.member_id=m.member_id(+)
 		ORDER BY ref DESC, re_step ASC)a)b
 	WHERE b.rm>=#{startRow} AND b.rm<=#{endRow}
 ]]>
 	</select>
 	
 	<insert id="save" parameterType="board.dto.BoardDTO">
-		INSERT INTO board(num, subject, upload_date, readcount, ref, re_step,
+		INSERT INTO board(board_id, subject, upload_date, readcount, ref, re_step,
 		re_level, content, attachment, member_id)
 		VALUES(board_num_seq.nextval,
 		#{subject},
@@ -49,15 +49,15 @@
 
 	<update id="readCount" parameterType="int">
 		UPDATE board
-		SET readCount = readCount + 1
-		WHERE num=#{num}
+		SET readcount = readcount + 1
+		WHERE board_id=#{board_id}
 	</update>
 	
 	<select id="content" parameterType="int"
 		resultMap="listSelect">
 		SELECT b.*, m.member_id FROM board b, member m
 		WHERE b.member_id=m.member_id(+)
-		AND num=#{num}
+		AND board_id=#{board_id}
 	</select>
 	
 	<update id="reStepCount" parameterType="board.dto.BoardDTO"> <!-- 대댓글 -->
@@ -69,7 +69,7 @@
 	<select id="getFile" parameterType="int" resultType="string">
 		SELECT attachment
 		FROM board
-		WHERE num = #{num}
+		WHERE board_id = #{board_id}
 	</select>
 	
 	<update id="update" parameterType="board.dto.BoardDTO">
@@ -78,12 +78,12 @@
 		<if test="attachment != null">
 			, attachment=#{attachment}
 		</if>
-		WHERE num=#{num}
+		WHERE board_id=#{board_id}
 	</update>
 	
 	<delete id="delete" parameterType="int">
 		DELETE FROM board
-		WHERE num=#{num}
+		WHERE board_id=#{board_id}
 	</delete>
 		
 </mapper>
