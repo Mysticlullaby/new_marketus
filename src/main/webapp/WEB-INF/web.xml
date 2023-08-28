@@ -43,6 +43,7 @@
 			/WEB-INF/spring/appServlet/store-context.xml
 			/WEB-INF/spring/appServlet/mgpage-context.xml
 			/WEB-INF/spring/appServlet/mgreview-context.xml
+			/WEB-INF/spring/appServlet/pay-context.xml
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
