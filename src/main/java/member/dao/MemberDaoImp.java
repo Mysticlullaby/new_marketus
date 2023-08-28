@@ -1,5 +1,9 @@
 package member.dao;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import org.mybatis.spring.SqlSessionTemplate;
 
 import member.dto.MemberDTO;
@@ -30,8 +34,38 @@ public class MemberDaoImp implements MemberDAO {
 	}
 	
 	@Override
-	public void deleteMember(MemberDTO dto){
+	public void deleteMember(MemberDTO dto) {
 		sqlSession.delete("member.deleteMember", dto);
+	}
+	
+	public int checkId(String member_id, PreparedStatement psmt, ResultSet rs) {
+		conn();
+		String sql = "select * from member where member_id = ?"; // 입력값이 테이블에 있는지 확인
+		int idCheck = 0;
+		
+		try {
+			psmt = conn.prepareStatment(sql);
+			psmt.setString(1, member_id);
+			
+			rs = psmt.executeQuery();
+			
+			if(rs.next() || member_id.equals("")) {
+				idCheck = 0;
+			} else {
+				idCheck = 1;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return idCheck;
+	}
+
+	private void conn() {		
+	}
+
+	private void close() {		
 	}
 	
 }//end class

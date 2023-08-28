@@ -75,6 +75,8 @@ public class MemberController {
 		}
 		return mav;
 	}
+	
+//	public String https://m.blog.naver.com/mk6322/221487339059
 
 	// 로그아웃
 	@RequestMapping(value = "member/logout.do")

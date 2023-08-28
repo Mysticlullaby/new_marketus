@@ -7,10 +7,10 @@
 	$(document).ready(function() {
 		if ($.cookie("SAVE")) {
 			$("#member_id").val($.cookie("SAVE"));
-			$("#rememberId").prop('checked', true);
+			$("#saveId").prop('checked', true);
 		}
 
-		$('#rememberId').click(function() { //checkbox id값 지정
+		$('#saveId').click(function() { //checkbox id값 지정
 			let chk = $(this).is(":checked");
 			console.log(chk);
 			if (!chk) {
@@ -26,7 +26,7 @@
        <input type="text" name="member_id" id="member_id" placeholder="아이디를 입력해주세요"> <!-- dto에 입력된 멤버변수 이름과 동일한 네임값을 가져옴 -->
        <input type="password" name="password" id="password" placeholder="비밀번호를 입력해주세요">
        	 <label for="rememberCheck">
-          <input type="checkbox" name="rememberId" id="rememberId"> 아이디 저장하기
+          <input type="checkbox" name="rememberId" id="saveId"> 아이디 저장하기
          </label>
            <input type="submit" value="로그인">
            <button type="button" class="btn btn-secondary" onclick="goToSignupPage()">회원가입</button>
