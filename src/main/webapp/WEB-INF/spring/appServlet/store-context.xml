@@ -10,10 +10,8 @@
    <bean id="storeDao" class="store.dao.StoreDaoImp">
      <property name="sqlSession" ref="sqlSession" />
    </bean>
-   
-   
-
-	<bean class="store.controller.StoreController">
+ 
+ 	<bean class="store.controller.StoreController">
 	 <property name="storeDao" ref="storeDao" />
 	</bean>
 	

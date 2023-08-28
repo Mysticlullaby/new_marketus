@@ -151,7 +151,7 @@
             </thead>
             <tbody id='area_tbody'>
              
-             
+              
             </tbody>
           </table>
         </div><br/>

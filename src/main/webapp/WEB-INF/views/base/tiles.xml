@@ -56,6 +56,18 @@
 		<put-attribute name="content" value="/WEB-INF/views/shop/product.jsp" />
 	</definition>
 	
+	<definition name="mgpage" extends="defaultLayout">
+		<put-attribute name="title" value="주문관리" />
+		<put-attribute name="header" value="/WEB-INF/views/management/mgheader.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/management/mgpage.jsp" />
+	</definition>
+	
+	<definition name="mgreview" extends="defaultLayout">
+		<put-attribute name="title" value="리뷰관리" />
+		<put-attribute name="header" value="/WEB-INF/views/management/mgheader.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/management/mgreview.jsp" />
+	</definition>
+
 	<definition name="cart" extends="defaultLayout">
 		<put-attribute name="title" value="장바구니 - 마켓" />
 		<put-attribute name="content" value="/WEB-INF/views/member/cart.jsp" />
