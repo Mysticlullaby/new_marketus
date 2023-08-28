@@ -1,10 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
 <script defer src="../resources/js/passwordCheck.js"/></script>
+<script src = "js/jquery-3.6.0.min.js"></script>
 
-
+<script type="text/javascript">
+ $(document).ready(function() {
+	 $(".member_id").on("focusout", function(){
+		 let member_id = $(".member_id").val();
+		 
+		 $.ajax({
+			 url : "IdCheckService",
+			 type : "post",
+			 data : {memberid: memberid},
+			 dataType : 'json',
+			 success : function(result){
+				 if(result == 0){
+					 $("#chkId").html('중복된 아이디입니다.');
+					 $("#chkId").attr('color', 'red');
+				 } else {
+					 $("#chkId").html('사용가능한 아이디입니다.');
+					 $("#chkId").attr('color', 'green');
+				 }
+			 },
+			 error : function(){
+				 alert("서버 요청 실패");
+			 }
+		 })
+	 })
+ })
+</script>
 
 <form class="row g-3" action="signup.do" method="post">
   <div class="col-md-7">
