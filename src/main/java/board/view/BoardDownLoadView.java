@@ -31,11 +31,11 @@ public class BoardDownLoadView extends AbstractView{
 	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {	
             
-		 int num = Integer.parseInt(request.getParameter("num"));
+		 int board_id = Integer.parseInt(request.getParameter("board_id"));
 		 String saveDirectory = FileUpload.urlPath(request);
 		 
-		 String upload = boardDao.getFile(num);
-		 String fileName = upload.substring(upload.indexOf("_") + 1);
+		 String attachment = boardDao.getFile(board_id);
+		 String fileName = attachment.substring(attachment.indexOf("_") + 1);
 		 
 		 //파일명이 한글일때 인코딩 작업을 한다.
 		 String str = URLEncoder.encode(fileName, "UTF-8");
@@ -50,7 +50,7 @@ public class BoardDownLoadView extends AbstractView{
 		 response.setHeader("Content-Disposition", "attachment;filename=" + str +";");
 		 
 		 //서버에 저장된 파일을 읽어와 클라이언트에 출력해 준다.
-		 FileCopyUtils.copy(new FileInputStream(new File(saveDirectory, upload)), response.getOutputStream());
+		 FileCopyUtils.copy(new FileInputStream(new File(saveDirectory, attachment)), response.getOutputStream());
 	}
 
 }

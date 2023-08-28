@@ -60,7 +60,7 @@ $(document).ready(function(){
 			</tr>
 		</table>
 		<div class="text-center mt-5 mb-5">
-		<input type="hidden" name="num" value="${dto.num}"/><input
+		<input type="hidden" name="board_id" value="${dto.board_id}"/><input
 			type="hidden" name="currentPage" value="${currentPage}" /><input
 			type="button" id="update" value="수정" /><input 
 			type="button" id="cancel" value="취소" /><input

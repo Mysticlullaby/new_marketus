@@ -9,9 +9,7 @@
 </head>
 <body>
 	<div id="bodywrap">
-		<form id="frm" method="get" action="write.do">
-			<input type="submit" id="btnWrite" value="글쓰기" />
-		</form>
+		
 		<table class="table table-border mt-1">
 			<tr>
 				<th class="col-md-1 text-center">번호</th>
@@ -23,9 +21,9 @@
 			<c:forEach items="${boardList}" var="dto">
 			<!-- 제목 시작 -->
 				<tr>
-					<td class="text-center">${dto.num}</td>
+					<td class="text-center">${dto.board_id}</td>
 					<td class="text-left"><c:url var="path" value="view.do">
-							<c:param name="num" value="${dto.num}" />
+							<c:param name="board_id" value="${dto.board_id}" />
 							<c:param name="currentPage" value="${pv.currentPage}" />
 						</c:url><c:if test="${dto.re_level > 0}">
 					 		<img src="../resources/image/level.gif"
@@ -41,7 +39,7 @@
 			</c:forEach>
 		</table>
 		
-		<ul class="pagination justify-content-center mt-5 mb-5">
+		<ul class="pagination justify-content-center mt-5 mb-4">
 		
 			<!-- 이전 출력 시작 -->
 			<li><a class="page-link"
@@ -68,6 +66,12 @@
 					href="list.do?currentPage=${pv.startPage + pv.blockPage}">Next</a></li>
 			</c:if>
 			<!-- 다음 출력 끝 -->
+		</ul>
+		
+		<ul class="nav justify-content-center mb-1 mt-1">
+		<form id="frm" method="get" action="write.do">
+			<input type="submit" id="btnWrite" class="btn btn-outline-warning" value="글쓰기" />
+		</form>
 		</ul>
 	</div>
 </body>

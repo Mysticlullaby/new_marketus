@@ -43,14 +43,14 @@ public class BoardServiceImp implements BoardService {
 	}
 
 	@Override
-	public BoardDTO contentProcess(int num) {
-		boardDao.readCount(num);
-		return boardDao.content(num);
+	public BoardDTO contentProcess(int board_id) {
+		boardDao.readCount(board_id);
+		return boardDao.content(board_id);
 	}
 
 	@Override
-	public BoardDTO updateSelectProcess(int num) {
-		return boardDao.content(num);
+	public BoardDTO updateSelectProcess(int board_id) {
+		return boardDao.content(board_id);
 	}
 
 	@Override
@@ -72,17 +72,17 @@ public class BoardServiceImp implements BoardService {
 	}
 
 	@Override
-	public void deleteProcess(int num, String urlpath) {
-		String path = boardDao.getFile(num);
+	public void deleteProcess(int board_id, String urlpath) {
+		String path = boardDao.getFile(board_id);
 		if(path != null) {
 			File file = new File(urlpath, path);
 			file.delete();
 		}
-		boardDao.delete(num);
+		boardDao.delete(board_id);
 	}
 
 	@Override
-	public String fileSelectprocess(int num) {
+	public String fileSelectprocess(int board_id) {
 
 		return null;
 	}

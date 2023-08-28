@@ -47,7 +47,7 @@
 				</c:when>
 				
 				<c:otherwise>
-					<a href="contentsdownload.do?num=${dto.num}">${fn:substringAfter(dto.attachment,"_")}</a>
+					<a href="contentsdownload.do?board_id=${dto.board_id}">${fn:substringAfter(dto.attachment,"_")}</a>
 					<!-- 첨부파일명의 랜덤 스트링을 없애준다. -->
 				</c:otherwise>
 			</c:choose>
@@ -57,7 +57,7 @@
 	
 	<div class="text-center mt-5 mb-5">
 		<form name="frm" id="frm" method="get">
-			<input type="hidden" name="num" value="${dto.num}" /><input
+			<input type="hidden" name="board_id" value="${dto.board_id}" /><input
 				type="hidden" name="currentPage" id="currentPage"
 				value="${currentPage}" />
 			<c:if test="${dto.ref !=0}">

@@ -36,13 +36,13 @@ public class BoardDaoImp implements BoardDAO {
 	}
 
 	@Override
-	public void readCount(int num) {
-		sqlSession.update("board.readCount", num);
+	public void readCount(int board_id) {
+		sqlSession.update("board.readCount", board_id);
 	}
 
 	@Override
-	public BoardDTO content(int num) {
-		return sqlSession.selectOne("board.content", num);
+	public BoardDTO content(int board_id) {
+		return sqlSession.selectOne("board.content", board_id);
 	}
 
 	@Override
@@ -63,13 +63,13 @@ public class BoardDaoImp implements BoardDAO {
 	}
 
 	@Override
-	public void delete(int num) {
-		sqlSession.delete("board.delete", num);		
+	public void delete(int board_id) {
+		sqlSession.delete("board.delete", board_id);		
 	}
 
 	@Override
-	public String getFile(int num) {
-		return sqlSession.selectOne("board.getFile", num);
+	public String getFile(int board_id) {
+		return sqlSession.selectOne("board.getFile", board_id);
 	}	
 
 }
