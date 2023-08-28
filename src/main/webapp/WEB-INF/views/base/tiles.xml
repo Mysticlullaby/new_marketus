@@ -50,5 +50,10 @@
 		<put-attribute name="title" value="MarketUs - 마켓" />
 		<put-attribute name="content" value="/WEB-INF/views/shop/product.jsp" />
 	</definition>	
+	
+		<definition name="payment" extends="defaultLayout">
+		<put-attribute name="title" value="MarketUs - 결제창" />
+		<put-attribute name="content" value="/WEB-INF/views/payment/payment.jsp" />
+		</definition>	
 
 </tiles-definitions>
