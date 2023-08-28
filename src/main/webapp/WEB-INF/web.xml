@@ -41,6 +41,8 @@
 			/WEB-INF/spring/appServlet/member-context.xml 
 			/WEB-INF/spring/appServlet/board-context.xml
 			/WEB-INF/spring/appServlet/store-context.xml
+			/WEB-INF/spring/appServlet/mgpage-context.xml
+			/WEB-INF/spring/appServlet/mgreview-context.xml
 			</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
