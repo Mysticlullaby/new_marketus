@@ -7,25 +7,25 @@
 <mapper namespace="mgpage">
 
 <!-- 주문상태 가져오기 -->
-	<select id="state" parameterType="string" resultType="mgpage.dto.MgPageDTO">	
+	<select id="statusTex" parameterType="string" resultType="mgpage.dto.MgPageDTO">	
 		SELECT * FROM order_info
 		WHERE status LIKE #{data}
 	</select>
 	
 <!-- 주문번호 가져오기 -->
-	<select id="orderid" parameterType="string" resultType="mgpage.dto.MgPageDTO">	
+	<select id="orderId" parameterType="string" resultType="mgpage.dto.MgPageDTO">	
 		SELECT * FROM order_info
 		WHERE order_id LIKE #{data}
 	</select>
 	
 <!-- 회원ID 가져오기 -->
-	<select id="memberid" parameterType="string" resultType="mgpage.dto.MgPageDTO">	
+	<select id="membeId" parameterType="string" resultType="mgpage.dto.MgPageDTO">	
 		SELECT * FROM order_info
 		WHERE member_id LIKE #{data}
 	</select>
 
 <!-- 주문상품 가져오기 -->
-	<select id="productid" parameterType="string" resultType="mgpage.dto.MgPageDTO">	
+	<select id="productId" parameterType="string" resultType="mgpage.dto.MgPageDTO">	
 		SELECT * FROM order_info
 		WHERE product_id LIKE #{data}
 	</select>

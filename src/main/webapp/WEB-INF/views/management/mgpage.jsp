@@ -59,9 +59,8 @@
     	    $.ajax({
     	        url: 'URL_여기에_매퍼_URL_입력', // 매퍼의 URL을 입력
     	        method: 'POST', // 또는 'GET' 등 HTTP 요청 방식 선택
-    	        data: {
-    	            // 필요한 데이터 전달 (예: data: someData)
-    	        },
+    	        dataType:'Json'     	    // 필요한 데이터 전달 (예: data: someData)
+    	        ,
     	        success: function(res) {
     	            viewMessage(res);
     	        },
