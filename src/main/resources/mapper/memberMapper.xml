@@ -18,8 +18,14 @@
 
 	<update id="updateMember" parameterType="member.dto.MemberDTO">
 		UPDATE member
-		SET member_name=#{member_name}, password=#{password}, address=#{address}, gender=#{gender}, age=#{age}, phone_number=#{phone_number}, email=#{email}
+		SET password=#{password}, member_name=#{member_name}, phone_number=#{phone_number}, address=#{address}, email=#{email}
 		WHERE member_id=#{member_id}
 	</update>
+	
+	<delete id="deleteMember" parameterType="member.dto.MemberDTO">
+		DELETE FROM member
+		WHERE member_id=#{member_id}
+		AND password=#{password}
+	</delete>
 
 </mapper>
