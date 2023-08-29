@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="payment">
+ <select id="itempay" resultType="pay.dto.PayDTO">
+	SELECT oi.*, m.member_name, m.phone_number
+	FROM order_info oi,member m
+	WHERE oi.member_id = m.member_id;
+ </select>
+ 
+</mapper>

@@ -16,6 +16,7 @@
 	<!-- MemberController 빈 선언-->
 	<bean class="member.controller.MemberController" >
 		<property name="memberService" ref="MemberService" /> 
+		<property name="shopService" ref="shopService"/>
 	</bean> 	 
 	<!-- <property>는 다른 클래스의 객체를 멤버변수로 가지고 있을 때 선언해줘야 함 -->
 

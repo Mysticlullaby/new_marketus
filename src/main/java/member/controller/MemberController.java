@@ -12,6 +12,7 @@ import member.dto.AuthInfo;
 import member.dto.MemberDTO;
 import member.exception.WrongPasswordException;
 import member.service.MemberService;
+import shop.service.ShopService;
 
 // http://localhost:8090/marketus/member/login.do
 // http://localhost:8090/marketus/member/signup.do
@@ -21,12 +22,17 @@ import member.service.MemberService;
 @Controller
 public class MemberController {
 	private MemberService memberService;
+	private ShopService shopService;
 
 	public MemberController() {
 	}
 
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
+	}
+	
+	public void setShopService(ShopService shopService) {
+		this.shopService = shopService;
 	}
 
 	// 회원가입 폼
@@ -114,8 +120,14 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="member/cart.do")
-	public String cart() {
-		return "cart";
+	public ModelAndView cart(ModelAndView mav ,HttpSession httpSession) {
+		//세션에서 authInfo 정보를 불러옵니다.
+		AuthInfo authInfo = (AuthInfo)httpSession.getAttribute("authInfo");
+		//불러온 authInfo에 해당하는 멤버의 DTO를 가져옵니다.
+		MemberDTO memberDTO = memberService.editProcess(authInfo.getMember_id());
+		mav.addObject("orderInfo", shopService.getOrderProcess(memberDTO));
+		mav.setViewName("cart");
+		return mav;
 	}
 
 } // end class
