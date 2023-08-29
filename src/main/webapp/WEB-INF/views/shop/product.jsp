@@ -44,6 +44,9 @@
 	        alert('장바구니에 추가되었습니다.')
 	    };
 	})
+	
+	
+	
 </script> 
  
     
@@ -115,7 +118,9 @@
 					
 					<div class="d-grid gap-2">
 					  <input class="btn btn-outline-success" type="button" id="addCart" value="장바구니 담기">
+					  <a class="btn btn-success" id="purchase" href="http://localhost:8090/marketus/pay.do">
 					  <input class="btn btn-success" type="button" id="purchase" value="구매하기">
+					  </a>
 					</div>	
 					  <input type="hidden" name="product_id" id="product_id" value="${shopDTO.product_id}" />
 				</form>				

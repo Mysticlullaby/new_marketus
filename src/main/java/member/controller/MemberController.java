@@ -1,11 +1,15 @@
 package member.controller;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import member.dto.AuthInfo;
 import member.dto.MemberDTO;
@@ -40,9 +44,16 @@ public class MemberController {
 
 	// 회원가입 처리
 	@RequestMapping(value = "member/signup.do", method = RequestMethod.POST)
-	public String singup(MemberDTO dto) {
+	public String signup(MemberDTO dto) {
 		memberService.signupProcess(dto);
 		return "redirect:/member/login.do";
+	}
+	
+	// 회원가입 중복체크
+	@RequestMapping(value="member/idCheck.do")
+	public @ResponseBody int memberidCheck(String member_id) {
+		int result = memberService.memberidCheck(member_id);
+		return result;
 	}
 
 	// 로그인 화면
@@ -53,12 +64,22 @@ public class MemberController {
 
 	// 로그인 처리
 	@RequestMapping(value = "member/login.do", method = RequestMethod.POST)
-	public ModelAndView login(MemberDTO memberDTO, HttpSession httpSession) {// httpSession에 로그인한 사용자의 정보를 저장
+	public ModelAndView login(MemberDTO memberDTO, HttpSession httpSession, HttpServletResponse httpresp) {// httpSession에 로그인한 사용자의 정보를 저장
 		ModelAndView mav = new ModelAndView();
-
+		Cookie rememberCookie = new Cookie("SAVE", memberDTO.getMember_id());
+		rememberCookie.setPath("/");
+		
 		try {
 			AuthInfo authInfo = memberService.loginProcess(memberDTO);
-			httpSession.setAttribute("authInfo", authInfo); 
+			httpSession.setAttribute("authInfo", authInfo);
+			
+			if(memberDTO.isRememberId()) {
+				rememberCookie.setMaxAge(60 * 60);
+			} else {
+				rememberCookie.setMaxAge(0);
+			}
+			
+			httpresp.addCookie(rememberCookie);
 			mav.setViewName("redirect:/mainhome.do");
 		} catch (WrongPasswordException e) {
 			mav.addObject("errorMessage", e.getMessage());
@@ -66,7 +87,7 @@ public class MemberController {
 		}
 		return mav;
 	}
-	
+
 	// 로그아웃
 	@RequestMapping(value = "member/logout.do")
 	public String logout(HttpSession httpSession) {
@@ -85,21 +106,36 @@ public class MemberController {
 	
 	// 회원정보수정 처리
 	@RequestMapping(value = "member/edit.do", method = RequestMethod.POST)
-	public String edit(MemberDTO memberDTO, HttpSession httpSession) { // httpSession에 로그인한 사용자의 정보를 저장하기 떄문에 호출필요
-		AuthInfo authInfo = (AuthInfo)httpSession.getAttribute("authInfo");
-		memberDTO.setMember_id(authInfo.getMember_id()); // 회원정보 수정을 위해 입력된 memberDTO 객체에 현재 로그인한 사용자의 ID를 설정하는 역할
-		authInfo = memberService.editProcess(memberDTO); // service 객체에 edit 메서드를 호출하여 memberDTO를 기반으로 회원정보 수정 및 수정값 반환
-		httpSession.setAttribute("authInfo", authInfo);
+	public String edit(MemberDTO memberDTO, HttpSession httpSession) { // httpSession에 로그인한 사용자의 정보를 저장하기 위해 매개변수명 정의
+		AuthInfo authInfo = (AuthInfo)httpSession.getAttribute("authInfo"); 
+		memberDTO.setMember_id(authInfo.getMember_id()); // memberDTO 객체에 현재 로그인한 사용자의 id를 설정
+		authInfo = memberService.editProcess(memberDTO); // service 객체에 edit메서드를 호출하여 memberDTO를 기반으로 회원정보 수정 및 수정값 반환
+		httpSession.setAttribute("authInfo", authInfo); // httpSession 객체에 "authInfo"라는 이름으로 인증정보(authInfo 객체)를 저장
 		return "redirect:/mainhome.do";
 	}
-//	
-//	// 회원탈퇴
-//	@RequestMapping(value = "member/edit.do", method = RequestMethod.GET)
-//	public String delete(MemberDTO memberDTO, HttpSession httpSession) {
-//		AuthInfo authInfo = (AuthInfo)httpSession.getAttribute("authInfo");
-//		
-//		return null;		
-//	}
+
+	// 회원탈퇴 폼
+	@RequestMapping(value = "member/delete.do", method = RequestMethod.GET)
+	public String delete() {
+		return "delete";
+	}
+	
+	// 회원탈퇴 처리
+	@RequestMapping(value = "member/delete.do", method = RequestMethod.POST)
+	public String delete(MemberDTO memberDTO, AuthInfo authInfo, HttpSession httpSession, RedirectAttributes rttr) {	
+		
+		AuthInfo member = (AuthInfo) httpSession.getAttribute("authInfo"); // 세션에서 가져온 authInfo 데이터를 "member"라는 변수에 저장
+		String sessionPass = member.getPassword(); // member에서 패스워드를 가져와서 sessionPass 변수에 저장
+		String memberpass = memberDTO.getPassword(); // user가 입력한 패스워드를 memberDTO에서 가져와서 memberpass 변수에 저장
+		
+		if(!(sessionPass.equals(memberpass))) {
+			rttr.addFlashAttribute("msg", false); // url에 노출되지 않고 redirect 시 데이터 전달, 받을 때 사용
+			return "redirect:/member/delete.do";
+		}
+		memberService.deleteProcess(memberDTO);
+		httpSession.invalidate();
+		return "redirect:/mainhome.do"; // 해당 경로로 돌아가 로그아웃 상태로 전환
+	}
 	
 	@RequestMapping(value="member/cart.do")
 	public ModelAndView cart(ModelAndView mav ,HttpSession httpSession) {

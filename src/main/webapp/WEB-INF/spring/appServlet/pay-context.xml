@@ -7,12 +7,11 @@
 
   <mvc:annotation-driven></mvc:annotation-driven>
  
-   <bean id="storeDao" class="store.dao.StoreDaoImp">
+   <bean id="paydao" class="pay.dao.PayDaoImp">
      <property name="sqlSession" ref="sqlSession" />
    </bean>
  
- 	<bean class="store.controller.StoreController">
-	 <property name="storeDao" ref="storeDao" />
+ 	<bean class="pay.controller.PayController">
 	</bean>
 	
 </beans>

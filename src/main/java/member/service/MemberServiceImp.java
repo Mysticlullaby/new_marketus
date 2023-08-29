@@ -15,15 +15,16 @@ public class MemberServiceImp implements MemberService {
 		this.memberDao = memberDao;
 	}
 	
-//	public void signupProcess(MemberDTO dto) {
-//		memberDao.insertMember(dto);
-//	} // 회원가입 및 db 입력용 메서드
-	
 	@Override
-	public AuthInfo signupProcess(MemberDTO dto) { // 회원 가입 후에 해당 회원의 인증 정보를 생성하고 세션에 저장하기 위함
+	public AuthInfo signupProcess(MemberDTO dto) { // 회원가입 후에 해당 회원의 인증 정보를 생성하고 세션에 저장하기 위함
 		memberDao.insertMember(dto);
 		return new AuthInfo(dto.getMember_id(), dto.getMember_name(), dto.getPassword());		
 	} // 로그인 성공 후 인증상태 정보를 보관할 때 사용할 메서드
+	
+	@Override
+	public int memberidCheck(String member_id) {
+		return memberDao.memberidCheck(member_id);
+	}
 
 	@Override
 	public AuthInfo loginProcess(MemberDTO dto) {
@@ -44,14 +45,14 @@ public class MemberServiceImp implements MemberService {
 	
 	@Override
 	public AuthInfo editProcess(MemberDTO dto) {
-		memberDao.updateMember(dto);
+		memberDao.updateMember(dto); // dto에 담겨있는 회원정보를 이용하여 update 함
 		MemberDTO member = memberDao.selectById(dto.getMember_id()); // member_id를 기반으로 DB에서 회원정보 조회
 		return new AuthInfo(member.getMember_id(), member.getMember_name(), member.getPassword()); // 수정된 회원정보로 생성된 authinfo 객체 반환
 	} // 회원정보를 수정하고 업데이트된 정보를 사용하여 인증정보 객체를 생성하는 역할(수정 후의 정보를 업데이트)
 	
-//	public AuthInfo deleteProcess(MemberDTO dto) {
-//		
-//		return null;
-//	}
+	@Override
+	public void deleteProcess(MemberDTO dto) {
+		memberDao.deleteMember(dto);
+	} // 회원탈퇴 메서드
 
 }//end class

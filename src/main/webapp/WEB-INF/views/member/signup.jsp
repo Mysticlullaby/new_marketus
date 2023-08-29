@@ -1,10 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
 <script defer src="../resources/js/passwordCheck.js"/></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-
+<script type="text/javascript">
+ $(document).ready(function() {
+	 $("#member_id").keyup(function(){
+		 let member_id = $("#member_id").val();		 
+		 
+		 $.ajax({
+			 url : "http://localhost:8090/marketus/member/idCheck.do",
+			 type : "post",
+			 data : {member_id: member_id},
+			 dataType : 'json',
+			 success : function(result){
+				 if(result == 1){
+					 $("#idCheck").html('중복된 아이디입니다.');
+					 $("#idCheck").attr('color', 'red');
+				 } else {
+					 $("#idCheck").html('사용가능한 아이디입니다.');
+					 $("#idCheck").attr('color', 'green');
+				 }
+			 },
+			 error : function(){
+				 alert("서버 요청 실패");
+			 }
+		 })
+	 })
+ })
+</script>
 
 <form class="row g-3" action="signup.do" method="post">
   <div class="col-md-7">
@@ -13,6 +37,7 @@
       type="text" class="form-control" id="member_id" name="member_id"
       pattern="[A-Za-z0-9]{3,8}"
       placeholder="아이디를 입력해주세요(영문,숫자 3~8자)" required>
+      <font id="idCheck" size="2"></font>
   </div>
   
   <div class="col-md-6">
@@ -77,7 +102,6 @@
 </div>
      
      <div class="col-12">
-       <button type="submit" class="btn btn-warning">가입하기</button>
+       <button type="submit" class="btn btn-warning" id="signupSubmit">가입하기</button>
      </div>
    </form>
-
