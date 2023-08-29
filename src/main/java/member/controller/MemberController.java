@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -17,8 +18,6 @@ import member.service.MemberService;
 
 // http://localhost:8090/marketus/member/login.do
 // http://localhost:8090/marketus/member/signup.do
-// http://localhost:8090/marketus/member/edit.do
-// http://localhost:8090/marketus/member/delete.do
 
 @Controller
 public class MemberController {
@@ -42,6 +41,13 @@ public class MemberController {
 	public String signup(MemberDTO dto) {
 		memberService.signupProcess(dto);
 		return "redirect:/member/login.do";
+	}
+	
+	// 회원가입 중복체크
+	@RequestMapping(value="member/idCheck.do")
+	public @ResponseBody int memberidCheck(String member_id) {
+		int result = memberService.memberidCheck(member_id);
+		return result;
 	}
 
 	// 로그인 화면
@@ -75,8 +81,6 @@ public class MemberController {
 		}
 		return mav;
 	}
-	
-//	public String https://m.blog.naver.com/mk6322/221487339059
 
 	// 로그아웃
 	@RequestMapping(value = "member/logout.do")

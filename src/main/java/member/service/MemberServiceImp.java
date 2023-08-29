@@ -20,6 +20,11 @@ public class MemberServiceImp implements MemberService {
 		memberDao.insertMember(dto);
 		return new AuthInfo(dto.getMember_id(), dto.getMember_name(), dto.getPassword());		
 	} // 로그인 성공 후 인증상태 정보를 보관할 때 사용할 메서드
+	
+	@Override
+	public int memberidCheck(String member_id) {
+		return memberDao.memberidCheck(member_id);
+	}
 
 	@Override
 	public AuthInfo loginProcess(MemberDTO dto) {

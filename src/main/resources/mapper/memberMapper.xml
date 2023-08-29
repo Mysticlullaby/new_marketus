@@ -27,5 +27,10 @@
 		WHERE member_id=#{member_id}
 		AND password=#{password}
 	</delete>
+	
+	<select id="memberidCheck" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM member
+		WHERE member_id=#{member_id}
+	</select>
 
 </mapper>
