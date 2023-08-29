@@ -41,7 +41,7 @@
 	    });
 
 	    function viewMessage(){
-	        alert('장바구니 추가 성공!')
+	        alert('장바구니에 추가되었습니다.')
 	    };
 	})
 </script> 
@@ -94,7 +94,7 @@
 							</div>
 							<div class="col-sm-8">
 								<div class="btn-group" role="group" >
-							        <input type="button" class="btn btn-outline-dark" id="minus" value="-" />
+							        <input type="button" class="btn btn-outline-dark disabled" id="minus" value="-" />
 							        <input type="text" class="btn btn-outline-dark" size=1 id="count" name="product_count" value="1" readonly/>
 							        <input type="button" class="btn btn-outline-dark" id="plus" value="+" />
 								</div>
