@@ -32,7 +32,15 @@
 	    $('#addCart').click(function(){
 			$('#frm').attr('action', 'addCart.do').submit();
 		});
+	    	    
+	    $('#purchase').click(function(){
+	        window.location.href = 'src/main/webapp/WEB-INF/views/pay/pay.jsp';
+	    });
+	    
 	})
+	
+	
+	
 </script> 
  
     
@@ -104,8 +112,9 @@
 					
 					<div class="d-grid gap-2">
 					  <input class="btn btn-outline-success" type="button" id="addCart" value="장바구니 담기">
+					  <a class="btn btn-success" id="purchase" href="http://localhost:8090/marketus/pay.do">
 					  <input class="btn btn-success" type="button" id="purchase" value="구매하기">
-					</div>	
+					</div></a>	
 					  <input type="hidden" name="product_id" value="${shopDTO.product_id}" />
 				</form>				
 			</div>
