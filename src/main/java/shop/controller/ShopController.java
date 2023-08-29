@@ -1,5 +1,7 @@
 package shop.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -15,7 +17,7 @@ import shop.dto.CartDTO;
 import shop.dto.ShopPageDTO;
 import shop.service.ShopService;
 
-// http://localhost:8090/marketus/shop.do
+// http://localhost:8090/marketus/mainhome.do
 
 @Controller
 public class ShopController {
@@ -68,6 +70,32 @@ public class ShopController {
 		AuthInfo authInfo = (AuthInfo) httpSession.getAttribute("authInfo");
 		MemberDTO memberDTO = memberService.editProcess(authInfo.getMember_id());
 		shopService.addCartProcess(cartDTO, memberDTO);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/member/deleteCart.do")
+	public List<CartDTO> deleteCartExecute(CartDTO cartDTO, HttpSession httpSession) {
+		shopService.deleteCartProcess(cartDTO);
+		AuthInfo authInfo = (AuthInfo) httpSession.getAttribute("authInfo");
+		MemberDTO memberDTO = memberService.editProcess(authInfo.getMember_id());
+		return shopService.listCartProcess(memberDTO);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/member/editCart.do")
+	public List<CartDTO> editCartExecute(CartDTO cartDTO, HttpSession httpSession){
+		shopService.editCartProcess(cartDTO);
+		AuthInfo authInfo = (AuthInfo) httpSession.getAttribute("authInfo");
+		MemberDTO memberDTO = memberService.editProcess(authInfo.getMember_id());
+		return shopService.listCartProcess(memberDTO);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/member/getCart.do")
+	public List<CartDTO> getCartExecute(HttpSession httpSession){
+		AuthInfo authInfo = (AuthInfo) httpSession.getAttribute("authInfo");
+		MemberDTO memberDTO = memberService.editProcess(authInfo.getMember_id());
+		return shopService.listCartProcess(memberDTO);
 	}
 	
 }

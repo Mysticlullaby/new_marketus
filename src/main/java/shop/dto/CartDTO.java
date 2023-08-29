@@ -6,11 +6,11 @@ public class CartDTO {
 	private int product_id;
 	private int product_count;
 	
+	private ShopDTO shopDTO;
+	
 	public CartDTO() {
 		
-	}
-	
-	
+	}	
 
 	public CartDTO(int cart_id, int order_id, int product_id, int product_count) {
 		this.cart_id = cart_id;
@@ -19,8 +19,14 @@ public class CartDTO {
 		this.product_count = product_count;
 	}
 
-
-
+	public ShopDTO getShopDTO() {
+		return shopDTO;
+	}
+	
+	public void setShopDTO(ShopDTO shopDTO) {
+		this.shopDTO = shopDTO;
+	}
+	
 	public int getCart_id() {
 		return cart_id;
 	}

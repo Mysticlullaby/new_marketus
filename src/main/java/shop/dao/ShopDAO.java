@@ -22,4 +22,10 @@ public interface ShopDAO {
 	public OrderInfoDTO pickOrder(MemberDTO memberDTO);
 	
 	public void addCart(CartDTO cartDTO);
+	
+	public List<CartDTO> listCart(OrderInfoDTO orderInfoDTO);
+	
+	public void deleteCart(CartDTO cartDTO);
+	
+	public void editCart(CartDTO cartDTO);
 }

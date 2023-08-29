@@ -5,6 +5,7 @@ import java.util.List;
 import member.dto.MemberDTO;
 import shop.dao.ShopDAO;
 import shop.dto.CartDTO;
+import shop.dto.OrderInfoDTO;
 import shop.dto.ShopDTO;
 import shop.dto.ShopPageDTO;
 
@@ -46,6 +47,29 @@ public class ShopServiceImp implements ShopService{
 			cartDTO.setOrder_id(orderID);
 			shopDao.addCart(cartDTO);
 		}
+	}
+	
+	public List<CartDTO> listCartProcess(MemberDTO memberDTO){
+		//먼저 해당 멤버의 order를 가져옵니다.
+		OrderInfoDTO orderInfoDTO = shopDao.pickOrder(memberDTO);
+		//이제 불러온 order에 해당되는 cart 목록을 전부 가져옵니다.
+		return shopDao.listCart(orderInfoDTO);
+	}
+
+	@Override
+	public void deleteCartProcess(CartDTO cartDTO) {
+		shopDao.deleteCart(cartDTO);
+	}
+
+	@Override
+	public void editCartProcess(CartDTO cartDTO) {
+		shopDao.editCart(cartDTO);
+		
+	}
+
+	@Override
+	public OrderInfoDTO getOrderProcess(MemberDTO memberDTO) {
+		return shopDao.pickOrder(memberDTO);
 	}
 
 }

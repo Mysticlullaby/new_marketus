@@ -43,4 +43,27 @@
 		SELECT * FROM order_info
 		WHERE member_id=#{member_id} AND status='inCart'
 	</select>
+	
+	<select id="listCart" parameterType="shop.dto.OrderInfoDTO" resultMap="productSelect">
+		SELECT c.*, p.product_name, p.price
+		FROM cart c, product p
+		WHERE c.product_id = p.product_id AND c.order_id=#{order_id}
+	</select>
+	
+	<resultMap id="productSelect" type="shop.dto.CartDTO" autoMapping="true">
+		<association property="shopDTO" javaType="shop.dto.ShopDTO" autoMapping="true">
+		</association>
+	</resultMap>
+	
+	<delete id="deleteCart" parameterType="shop.dto.CartDTO">
+		DELETE FROM cart
+		WHERE order_id=#{order_id} AND product_id=#{product_id}
+	</delete>
+	
+	<update id="editCart" parameterType="shop.dto.CartDTO">
+		UPDATE cart
+		SET product_count=#{product_count}
+		WHERE order_id=#{order_id} AND product_id=#{product_id}
+	</update>
+	
 </mapper>

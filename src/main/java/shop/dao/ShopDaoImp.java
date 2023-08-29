@@ -52,4 +52,19 @@ public class ShopDaoImp implements ShopDAO{
 		sqlSession.insert("shop.addCart", cartDTO);		
 	}
 
+	@Override
+	public List<CartDTO> listCart(OrderInfoDTO orderInfoDTO) {
+		return sqlSession.selectList("shop.listCart", orderInfoDTO);
+	}
+
+	@Override
+	public void deleteCart(CartDTO cartDTO) {
+		sqlSession.delete("shop.deleteCart", cartDTO);		
+	}
+
+	@Override
+	public void editCart(CartDTO cartDTO) {
+		sqlSession.update("shop.editCart", cartDTO);		
+	}
+
 }
