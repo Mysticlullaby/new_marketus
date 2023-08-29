@@ -12,7 +12,8 @@
 	</bean>
 	
 	<bean class="shop.controller.ShopController">
-		<property name="shopService" ref="shopService"/>	
+		<property name="shopService" ref="shopService"/>
+		<property name="memberService" ref="MemberService"/>
 	</bean>
 
 </beans>
