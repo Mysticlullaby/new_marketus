@@ -32,7 +32,7 @@ public class ShopServiceImp implements ShopService{
 	}
 
 	@Override
-	public void addCartProcess(CartDTO cartDTO, MemberDTO memberDTO) {
+	public String addCartProcess(CartDTO cartDTO, MemberDTO memberDTO) {
 		int orderCheck = shopDao.orderCheck(memberDTO);
 		
 		//해당 member의 order가 없으면 order를 새로 생성합니다.
@@ -40,13 +40,38 @@ public class ShopServiceImp implements ShopService{
 			shopDao.newOrder(memberDTO);
 			orderCheck++;
 		}
-		
-		//해당 member의 order를 불러와서 cart 데이터가 어느 order에 귀속될 것인지 지정해줍니다.
+				
 		if(orderCheck==1) {
 			int orderID = shopDao.pickOrder(memberDTO).getOrder_id();
 			cartDTO.setOrder_id(orderID);
-			shopDao.addCart(cartDTO);
+			CartDTO db_cartDTO = shopDao.cartCheck(cartDTO);
+			try {
+				//이미 장바구니에 동일 상품이 있는 경우
+				int cl_product_count = cartDTO.getProduct_count();
+				int chk_product_count = db_cartDTO.getProduct_count();
+				cartDTO.setProduct_count(cl_product_count+chk_product_count);
+				shopDao.editCart(cartDTO);
+				return "상품이 장바구니에 이미 있습니다. 수량을 추가합니다.";
+				
+			}catch(NullPointerException ex) {
+				//장바구니에 동일 상품이 없는 경우
+				shopDao.addCart(cartDTO);
+				return "상품이 장바구니에 추가되었습니다.";
+			}
+			/*
+			 * if(cartCheck != null) { //이미 장바구니에 동일 상품이 있는 경우 int cl_product_count =
+			 * cartDTO.getProduct_count(); int chk_product_count =
+			 * cartCheck.getProduct_count();
+			 * cartDTO.setProduct_count(cl_product_count+chk_product_count);
+			 * shopDao.editCart(cartDTO); return "장바구니에 이미 동일한 상품이 있습니다. 수량이 추가되었습니다."; }
+			 * else { //장바구니에 동일 상품이 없는 경우 int orderID =
+			 * shopDao.pickOrder(memberDTO).getOrder_id(); cartDTO.setOrder_id(orderID);
+			 * shopDao.addCart(cartDTO); return "장바구니에 상품이 추가되었습니다."; }
+			 */
+//		} else {
+//			return "오류가 발생했습니다.";
 		}
+		return "예외 발생";
 	}
 	
 	public List<CartDTO> listCartProcess(MemberDTO memberDTO){

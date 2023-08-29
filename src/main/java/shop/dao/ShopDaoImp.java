@@ -67,4 +67,9 @@ public class ShopDaoImp implements ShopDAO{
 		sqlSession.update("shop.editCart", cartDTO);		
 	}
 
+	@Override
+	public CartDTO cartCheck(CartDTO cartDTO) {
+		return sqlSession.selectOne("shop.cartCheck", cartDTO);
+	}
+
 }

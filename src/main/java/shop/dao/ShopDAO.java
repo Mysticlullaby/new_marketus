@@ -28,4 +28,6 @@ public interface ShopDAO {
 	public void deleteCart(CartDTO cartDTO);
 	
 	public void editCart(CartDTO cartDTO);
+	
+	public CartDTO cartCheck(CartDTO cartDTO);
 }

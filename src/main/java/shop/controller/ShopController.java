@@ -2,6 +2,7 @@ package shop.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -65,11 +66,12 @@ public class ShopController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/shop/addCart.do")
-	public void addCartExecute(CartDTO cartDTO, HttpSession httpSession) {
+	@RequestMapping(value="/shop/addCart.do", produces = "application/text; charset=UTF-8")
+	public String addCartExecute(CartDTO cartDTO, HttpSession httpSession, HttpServletResponse response) {
+		response.setCharacterEncoding("UTF-8");
 		AuthInfo authInfo = (AuthInfo) httpSession.getAttribute("authInfo");
 		MemberDTO memberDTO = memberService.editProcess(authInfo.getMember_id());
-		shopService.addCartProcess(cartDTO, memberDTO);
+		return shopService.addCartProcess(cartDTO, memberDTO);
 	}
 	
 	@ResponseBody

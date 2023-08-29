@@ -66,8 +66,8 @@
 		WHERE order_id=#{order_id} AND product_id=#{product_id}
 	</update>
 	
-	<select id="checkCart" parameterType="shop.dto.CartDTO" resultType="int">
-		SELECT count(*) FROM cart
+	<select id="cartCheck" parameterType="shop.dto.CartDTO" resultType="shop.dto.CartDTO">
+		SELECT * FROM cart
 		WHERE order_id=#{order_id} AND product_id=#{product_id}
 	</select>
 	

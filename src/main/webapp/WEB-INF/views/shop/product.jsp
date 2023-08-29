@@ -35,13 +35,15 @@
 	    	
 	    	$.ajax({
 	    		type: 'GET',
+	    		dataType: 'text',
+	    		contentType : 'application/text; charset:UTF-8',
 	    		url: 'addCart.do?product_count='+count+'&product_id='+product_id,
 	    		success: viewMessage
 	    	});
 	    });
 
-	    function viewMessage(){
-	        alert('장바구니에 추가되었습니다.')
+	    function viewMessage(message){
+	        alert(message)
 	    };
 	})
 	
