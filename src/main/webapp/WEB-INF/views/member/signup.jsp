@@ -5,8 +5,10 @@
 
 <script type="text/javascript">
  $(document).ready(function() {
+	 let idDupAvailable = false;
+	 
 	 $("#member_id").keyup(function(){
-		 let member_id = $("#member_id").val();		 
+		 let member_id = $("#member_id").val();
 		 
 		 $.ajax({
 			 url : "http://localhost:8090/marketus/member/idCheck.do",
@@ -14,12 +16,14 @@
 			 data : {member_id: member_id},
 			 dataType : 'json',
 			 success : function(result){
-				 if(result == 1){
+				 if(result === 1){
 					 $("#idCheck").html('중복된 아이디입니다.');
-					 $("#idCheck").attr('color', 'red');
+					 $("#idCheck").css('color', 'red');
+					 idDupAvailable = false;
 				 } else {
 					 $("#idCheck").html('사용가능한 아이디입니다.');
-					 $("#idCheck").attr('color', 'green');
+					 $("#idCheck").css('color', 'green');
+					 idDupAvailable = true;
 				 }
 			 },
 			 error : function(){
@@ -27,7 +31,22 @@
 			 }
 		 })
 	 })
- })
+
+ 	// 아이디 입력필드를 벗어날 때 중복 알림을 초기화
+    $("#member_id").focusout(function() {
+    	if($('#idCheck').text()=='사용가능한 아이디입니다.')    		
+             $("#idCheck").html(''); // 알림 초기화
+       // idDupAvailable = false; // 아이디 중복 여부 초기화
+    });  
+	 
+	// 회원가입 버튼 클릭 이벤트 처리
+	    $("#signupSubmit").click(function() {
+	        if (!idDupAvailable) {
+	            alert("아이디가 중복되어 회원가입할 수 없습니다.");
+	            return false; // 회원가입 불가능 상태로 폼 제출 방지
+	        }
+	    })
+	})
 </script>
 
 <form class="row g-3" action="signup.do" method="post">
