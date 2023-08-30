@@ -25,4 +25,13 @@ public interface ShopService {
 	
 	public void editCartProcess(CartDTO cartDTO);
 	
+	public List<ShopDTO> searchProcess(String keyword);
+	
+	public int countResultProcess(String keyword);
+	
+	public List<ShopDTO> categoryProcess(String category);
+	
+	public int countCategoryProcess(String category);
+	
+	public void purchaseProcess(MemberDTO memberDTO);
 }

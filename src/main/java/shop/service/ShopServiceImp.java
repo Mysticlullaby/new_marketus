@@ -97,4 +97,36 @@ public class ShopServiceImp implements ShopService{
 		return shopDao.pickOrder(memberDTO);
 	}
 
+	@Override
+	public List<ShopDTO> searchProcess(String keyword) {
+		return shopDao.search(keyword);
+	}
+
+	@Override
+	public int countResultProcess(String keyword) {
+		return shopDao.countResult(keyword);
+	}
+
+	@Override
+	public List<ShopDTO> categoryProcess(String category) {
+		return shopDao.category(category);
+	}
+
+	@Override
+	public int countCategoryProcess(String category) {
+		return shopDao.countCategory(category);
+	}
+
+	@Override
+	public void purchaseProcess(MemberDTO memberDTO) {
+		OrderInfoDTO orderInfo = shopDao.pickOrder(memberDTO);
+		List<CartDTO> cartList = shopDao.listCart(orderInfo);
+		for(CartDTO cart : cartList) {
+			ShopDTO shopDTO = new ShopDTO(cart.getProduct_id(), cart.getProduct_count());
+			shopDao.addSellCount(shopDTO);
+		}
+		System.out.println("orderInfo : " + orderInfo.getOrder_id());
+		shopDao.purchase(orderInfo);
+	}
+
 }

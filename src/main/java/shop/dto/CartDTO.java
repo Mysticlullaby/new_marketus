@@ -7,7 +7,7 @@ public class CartDTO {
 	private int product_count;
 	
 	private ShopDTO shopDTO;
-	
+	 
 	public CartDTO() {
 		
 	}	

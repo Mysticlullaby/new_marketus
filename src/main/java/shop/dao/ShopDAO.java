@@ -30,4 +30,16 @@ public interface ShopDAO {
 	public void editCart(CartDTO cartDTO);
 	
 	public CartDTO cartCheck(CartDTO cartDTO);
+	
+	public List<ShopDTO> search(String keyword);
+	
+	public int countResult(String keyword);
+	
+	public List<ShopDTO> category(String category);
+	
+	public int countCategory(String category);
+	
+	public void purchase(OrderInfoDTO orderInfoDTO);
+	
+	public void addSellCount(ShopDTO shopDTO);
 }

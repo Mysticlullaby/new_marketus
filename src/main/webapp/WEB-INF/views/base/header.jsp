@@ -15,12 +15,11 @@
   <div class="container d-flex flex-wrap">
     <ul class="nav me-auto">
       <li class="nav-item">
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0" role="search">
-                <input type="search" class="form-control" placeholder="상품 찾기" aria-label="Search">
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0" role="search" action="${pageContext.request.contextPath}/search.do">
+                <input type="search" class="form-control" placeholder="상품 찾기" aria-label="Search" name="keyword">
         </form>        
       </li>   
       <li class="nav-item"><a href="#" class="nav-link px-2 active" aria-current="page" style="color: white;font-weight: 600;" ></a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2" style="color: white;font-weight: 600;">레시피</a></li>
       <li class="nav-item"><a href="${pageContext.request.contextPath}/shop.do" class="nav-link px-2" style="color: white;font-weight: 600;">마켓</a></li>
       <li class="nav-item"><a href="${pageContext.request.contextPath}/store_info.do" class="nav-link px-2" style="color: white;font-weight: 600;">매장안내</a></li>
 

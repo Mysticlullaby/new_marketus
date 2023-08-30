@@ -56,6 +56,16 @@ $(document).ready(function(){
     	});
     });
     
+    $(document).on('click', '.purchase', function(){   	
+    	$.ajax({
+    		type: 'GET',
+    		url: 'purchase.do',
+    	});
+    	$('#cartList').empty();
+    	$('.purchase').addClass('disabled')
+    	alert('상품 주문이 접수되었습니다.');
+    })
+    
     function refresh(cartList){
     	$('#cartList').empty();
 		$.each(cartList, function(index, cart){			
@@ -138,7 +148,7 @@ $(document).ready(function(){
 					</div>
 					<div>
 						<div class="d-grid gap-2">
-						  <button class="btn btn-success" type="button">주문하기</button>
+						  <button class="btn btn-success purchase" type="button" action="">주문하기</button>
 						</div>	
 					</div>
 				</div>
