@@ -13,7 +13,7 @@
 	
 	<definition name="mainhome" extends="defaultLayout">
 		<put-attribute name="title" value="MarketUs" />
-		<put-attribute name="content" value="홈페이지" />
+		<put-attribute name="content" value="/WEB-INF/views/main/mainhome.jsp" />
 	</definition>
 	
 	<definition name="login" extends="defaultLayout">
@@ -77,4 +77,15 @@
 		<put-attribute name="title" value="주문/관리" />
 		<put-attribute name="content" value="/WEB-INF/views/pay/pay.jsp" />
 	</definition>
+	
+	<definition name="payment" extends="defaultLayout">
+		<put-attribute name="title" value="결제 - MarketUS" />
+		<put-attribute name="content" value="/WEB-INF/views/pay/payment.jsp" />
+	</definition>
+	
+	<definition name="paymentRes" extends="defaultLayout">
+		<put-attribute name="title" value="결제완료 - MarketUS" />
+		<put-attribute name="content" value="/WEB-INF/views/pay/paymentRes.jsp" />
+	</definition>
+	
 </tiles-definitions>

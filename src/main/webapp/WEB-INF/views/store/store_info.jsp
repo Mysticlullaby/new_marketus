@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-        
 
-        
-      
-      
 
 		 <script type="text/javascript">
 		$('document').ready(function() {
@@ -156,16 +152,33 @@
           </table>
         </div><br/>
 
-        
-        <div class="text-center">
-          <ul class="pagination  justify-content-center">
-            <li><a class="page-link" href="#">1</a></li>
-            <li><a class="page-link" href="#">2</a></li>
-            <li><a class="page-link" href="#">3</a></li>
-            <li><a class="page-link" href="#">4</a></li>
-            <li><a class="page-link" href="#">5</a></li>
+      <%--   <div class="text-center">
+          <ul class="pagination justify-content-center mt-5 mb-5">
+          	<li><a class="page-link" href="store_info.do?currentPage=${pv.startPage-1}">Prev</a></li>
+            <c:forEach var="i" begin="${pv.startPage}" end="${pv.endPage }">
+			<li>
+			 <c:choose>
+			  <c:when test="${i==pv.currentPage}">
+			 	<a class="page-link page-item active" href=".do?currentPage=${i}">${i}</a>
+			  </c:when>
+			 <c:otherwise>
+			<a class="page-link" href="store_info.do?currentPage=${i}">${i}</a>
+			 </c:otherwise>
+			</c:choose>
+			</li>
+		</c:forEach>
+		<!-- 페이지 출력 끝 -->
+	
+	<!-- 다음 출력 시작 -->
+	<c:if test="${pv.endPage < pv.totalPage}">
+	 <li>
+	   <a class="page-link" href="store_info.do?currentPage=${pv.startPage+pv.blockPage}">Next</a>
+	 </li>
+	</c:if>
+	<!-- 다음 출력 끝 -->
+		
           </ul> 
-        </div>
+        </div> --%>
         
         <script>
         	function dataSetSearch(){
@@ -188,4 +201,6 @@
         		 $('#area_tbody').append('<tr><td>'+element.store_id+'</td><td>'+element.store_name+'</td><td>'+(element.store_number===null ? ' ': element.store_number )+'</td><td>'+element.store_address+'</td></tr>');});
         	 
         	}//end viewMessege
+
         </script>
+     

@@ -2,18 +2,30 @@ package pay.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import pay.dao.PayDao;
+//http://localhost:8090/marketus/pay/payment.do
+//https://develoyummer.tistory.com/94
 
 @Controller
 public class PayController {
-	private PayDao payDao;
 	
-	public PayController() { }
-	
-	@RequestMapping(value="/pay.do")
-	public String payExecute() {
-		return "pay";
+	public PayController() {
 	}
 
-}//end class
+	@RequestMapping(value = "pay/pay.do")
+	public String payExecute() {
+		return "payt";
+	}
+	
+	@RequestMapping(value = "pay/payment.do")
+	public String payment() {
+		return "payment";
+	}
+	
+	@RequestMapping(value = "pay/paymentRes.do", method = RequestMethod.GET)
+	public String paymentRes() {
+		return "paymentRes";
+	}
+	
+}// end class

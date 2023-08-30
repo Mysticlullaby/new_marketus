@@ -7,11 +7,16 @@
 
   <mvc:annotation-driven></mvc:annotation-driven>
  
-   <bean id="paydao" class="pay.dao.PayDaoImp">
-     <property name="sqlSession" ref="sqlSession" />
+  <!--  <bean id="payDAO" class="pay.dao.PayDaoImp">
+   		<property name="sqlSession" ref="sqlSession" />
    </bean>
+   
+   <bean id="payService" class="pay.service.PayService">
+   		<property name="payDao" ref="payDAO" />
+   </bean> -->
  
  	<bean class="pay.controller.PayController">
+ 	<!-- 	<property name="payService" ref="payService"/> -->
 	</bean>
 	
 </beans>
