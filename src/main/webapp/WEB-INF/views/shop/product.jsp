@@ -81,6 +81,14 @@
 							<div class="col-sm-8">
 								<p style="font-size:15px;font-weight:100">23시 전 주문시 익일 저녁 6시 전까지 배송</p>
 							</div>
+						</div>
+						<div class="row mx-1 py-3 border-bottom">	
+							<div class="col-sm-4">
+								<p style="font-size:16px">판매 단위<p>
+							</div>
+							<div class="col-sm-8">
+								<p style="font-size:15px;font-weight:100">${shopDTO.unit}</p>
+							</div>
 						</div>	
 						<div class="row mx-1 py-3 border-bottom">
 							<div class="col-sm-4">

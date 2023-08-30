@@ -9,6 +9,6 @@
 </head>
 <body>
     <div class="div">
-        <img id="ig" src="resources/image/mainhome.png">
+        <img id="ig" src="resources/image/mainhome.jpg">
     </div>
 </body>
