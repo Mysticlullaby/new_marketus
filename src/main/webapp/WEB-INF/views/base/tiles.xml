@@ -13,7 +13,7 @@
 	
 	<definition name="mainhome" extends="defaultLayout">
 		<put-attribute name="title" value="MarketUs" />
-		<put-attribute name="content" value="홈페이지" />
+		<put-attribute name="content" value="/WEB-INF/views/main/mainhome.jsp" />
 	</definition>
 	
 	<definition name="login" extends="defaultLayout">
