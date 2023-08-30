@@ -6,6 +6,7 @@ public class ShopDTO {
 	private int price;
 	private String category;
 	private String product_image;
+	private String unit;
 	private int sellCount;
 	
 	public ShopDTO() {
@@ -15,6 +16,15 @@ public class ShopDTO {
 	public ShopDTO(int product_id, int sellCount) {
 		this.product_id = product_id;
 		this.sellCount = sellCount;
+	}
+
+	
+	public String getUnit() {
+		return unit;
+	}
+
+	public void setUnit(String unit) {
+		this.unit = unit;
 	}
 
 	public int getSellCount() {
