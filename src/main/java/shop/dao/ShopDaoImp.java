@@ -103,4 +103,9 @@ public class ShopDaoImp implements ShopDAO{
 		sqlSession.update("shop.addSellCount", shopDTO);
 	}
 
+	@Override
+	public List<Integer> getWeeklyHotId() {
+		return sqlSession.selectList("shop.getWeeklyHotId", sqlSession);
+	}
+
 }

@@ -117,7 +117,7 @@
           <select name="gugun1" id="gugun1"></select>
 
           <div class="content-search-btm-area">
-            <input
+<!--             <input
               type="text"
               id="srhKeyword"
               name="srhKeyword"
@@ -126,7 +126,7 @@
               width="500px"
               placeholder="매장명을 검색하세요."
               value=""
-              onkeypress="if(event.keyCode==13){dataSetSearch();}"/>
+              onkeypress="if(event.keyCode==13){dataSetSearch();}"/> -->
             <a href="javascript:dataSetSearch();"
               id="searchBtn"
               class="search-area-btn search-btn"

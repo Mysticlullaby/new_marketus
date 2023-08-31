@@ -11,7 +11,7 @@
 		 let member_id = $("#member_id").val();
 		 
 		 $.ajax({
-			 url : "http://172.16.141.26:8090/marketus/member/idCheck.do",
+			 url : "idCheck.do",
 			 type : "post",
 			 data : {member_id: member_id},
 			 dataType : 'json',
