@@ -17,37 +17,47 @@
 				      <li class="border-top my-3"></li>
 				      <li class="mb-1">
 				        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
-				          채소
+				          농산품
 				        </button>
 				        <div class="collapse" id="home-collapse" style="">
 				          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-				            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded mb-1 ms-4">상품 카테고리</a></li>
-				            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded mb-1 ms-4">상품 카테고리</a></li>
-				            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded mb-1 ms-4">상품 카테고리</a></li>
+				            <li><a href="${pageContext.request.contextPath}/category.do?category=채소" class="link-body-emphasis d-inline-flex text-decoration-none rounded mb-1 ms-4">채소</a></li>
+				            <li><a href="${pageContext.request.contextPath}/category.do?category=곡류" class="link-body-emphasis d-inline-flex text-decoration-none rounded mb-1 ms-4">곡류</a></li>
+				            <li><a href="${pageContext.request.contextPath}/category.do?category=버섯" class="link-body-emphasis d-inline-flex text-decoration-none rounded mb-1 ms-4">버섯</a></li>
+				            <li><a href="${pageContext.request.contextPath}/category.do?category=과일" class="link-body-emphasis d-inline-flex text-decoration-none rounded mb-1 ms-4">과일</a></li>
+				            <li><a href="${pageContext.request.contextPath}/category.do?category=견과류" class="link-body-emphasis d-inline-flex text-decoration-none rounded mb-1 ms-4">견과류</a></li>
 				          </ul>
 				        </div>
 				      </li>
 				      <li class="mb-1">
 				        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-				          육류
+				          축산/수산품
 				        </button>
 				        <div class="collapse" id="dashboard-collapse">
 				          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-				            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded mb-1 ms-4">상품 카테고리</a></li>
-				            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded mb-1 ms-4">상품 카테고리</a></li>
-				            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded mb-1 ms-4">상품 카테고리</a></li>
+				            <li><a href="${pageContext.request.contextPath}/category.do?category=육류" class="link-body-emphasis d-inline-flex text-decoration-none rounded mb-1 ms-4">육류</a></li>
+				            <li><a href="${pageContext.request.contextPath}/category.do?category=어패류" class="link-body-emphasis d-inline-flex text-decoration-none rounded mb-1 ms-4">어패류</a></li>
+				            <li><a href="${pageContext.request.contextPath}/category.do?category=해조류" class="link-body-emphasis d-inline-flex text-decoration-none rounded mb-1 ms-4">해조류</a></li>
 				          </ul>
 				        </div>
 				      </li>
 				      <li class="mb-1">
 				        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-				          어류
+				          가공 식자재
 				        </button>
 				        <div class="collapse" id="orders-collapse">
 				          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-				            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded mb-1 ms-4">상품 카테고리</a></li>
-				            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded mb-1 ms-4">상품 카테고리</a></li>
-				            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded mb-1 ms-4">상품 카테고리</a></li>
+				            <li><a href="${pageContext.request.contextPath}/category.do?category=두부/묵" class="link-body-emphasis d-inline-flex text-decoration-none rounded mb-1 ms-4">두부/묵</a></li>
+				            <li><a href="${pageContext.request.contextPath}/category.do?category=양념/액젓/장" class="link-body-emphasis d-inline-flex text-decoration-none rounded mb-1 ms-4">양념/액젓/장</a></li>
+				            <li><a href="${pageContext.request.contextPath}/category.do?category=면" class="link-body-emphasis d-inline-flex text-decoration-none rounded mb-1 ms-4">면</a></li>
+				            <li><a href="${pageContext.request.contextPath}/category.do?category=주류" class="link-body-emphasis d-inline-flex text-decoration-none rounded mb-1 ms-4">주류</a></li>
+				            <li><a href="${pageContext.request.contextPath}/category.do?category=소스/향신/허브" class="link-body-emphasis d-inline-flex text-decoration-none rounded mb-1 ms-4">소스/향신/허브</a></li>
+				            <li><a href="${pageContext.request.contextPath}/category.do?category=식용유" class="link-body-emphasis d-inline-flex text-decoration-none rounded mb-1 ms-4">식용유</a></li>
+				            <li><a href="${pageContext.request.contextPath}/category.do?category=떡/빵/과자" class="link-body-emphasis d-inline-flex text-decoration-none rounded mb-1 ms-4">떡/빵/과자</a></li>
+				            <li><a href="${pageContext.request.contextPath}/category.do?category=가루/믹스" class="link-body-emphasis d-inline-flex text-decoration-none rounded mb-1 ms-4">가루/믹스</a></li>
+				            <li><a href="${pageContext.request.contextPath}/category.do?category=반찬" class="link-body-emphasis d-inline-flex text-decoration-none rounded mb-1 ms-4">반찬</a></li>
+				            <li><a href="${pageContext.request.contextPath}/category.do?category=음료" class="link-body-emphasis d-inline-flex text-decoration-none rounded mb-1 ms-4">음료</a></li>
+				            <li><a href="${pageContext.request.contextPath}/category.do?category=가공식품" class="link-body-emphasis d-inline-flex text-decoration-none rounded mb-1 ms-4">가공식품</a></li>
 				          </ul>
 				        </div>
 				      </li>
@@ -55,7 +65,7 @@
 				    </ul>				    
 				  </div>
 				  
-				  <div class="flex-shrink-0 p-3" style="width: 100%;">
+				  <!-- <div class="flex-shrink-0 p-3" style="width: 100%;">
 				    <span class="fs-7 fw-semibold">정렬 순서</span>
 				    <ul class="list-unstyled ps-0">
 				      <li class="border-top my-3"></li>
@@ -82,7 +92,7 @@
 				      </li>
 				      <li class="border-top my-3"></li>
 				    </ul>    
-				  </div>
+				  </div> -->
 			  	
 				</div>
 			  </div>

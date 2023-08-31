@@ -35,13 +35,15 @@
 	    	
 	    	$.ajax({
 	    		type: 'GET',
+	    		dataType: 'text',
+	    		contentType : 'application/text; charset:UTF-8',
 	    		url: 'addCart.do?product_count='+count+'&product_id='+product_id,
 	    		success: viewMessage
 	    	});
 	    });
 
-	    function viewMessage(){
-	        alert('장바구니 추가 성공!')
+	    function viewMessage(message){
+	        alert(message)
 	    };
 	})
 	
@@ -79,6 +81,14 @@
 							<div class="col-sm-8">
 								<p style="font-size:15px;font-weight:100">23시 전 주문시 익일 저녁 6시 전까지 배송</p>
 							</div>
+						</div>
+						<div class="row mx-1 py-3 border-bottom">	
+							<div class="col-sm-4">
+								<p style="font-size:16px">판매 단위<p>
+							</div>
+							<div class="col-sm-8">
+								<p style="font-size:15px;font-weight:100">${shopDTO.unit}</p>
+							</div>
 						</div>	
 						<div class="row mx-1 py-3 border-bottom">
 							<div class="col-sm-4">
@@ -97,7 +107,7 @@
 							</div>
 							<div class="col-sm-8">
 								<div class="btn-group" role="group" >
-							        <input type="button" class="btn btn-outline-dark" id="minus" value="-" />
+							        <input type="button" class="btn btn-outline-dark disabled" id="minus" value="-" />
 							        <input type="text" class="btn btn-outline-dark" size=1 id="count" name="product_count" value="1" readonly/>
 							        <input type="button" class="btn btn-outline-dark" id="plus" value="+" />
 								</div>
@@ -118,9 +128,6 @@
 					
 					<div class="d-grid gap-2">
 					  <input class="btn btn-outline-success" type="button" id="addCart" value="장바구니 담기">
-					  <a class="btn btn-success" id="purchase" href="http://localhost:8090/marketus/pay.do">
-					  <input class="btn btn-success" type="button" id="purchase" value="구매하기">
-					  </a>
 					</div>	
 					  <input type="hidden" name="product_id" id="product_id" value="${shopDTO.product_id}" />
 				</form>				

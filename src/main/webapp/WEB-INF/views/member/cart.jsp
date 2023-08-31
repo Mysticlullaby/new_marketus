@@ -13,14 +13,9 @@ $(document).ready(function(){
 	
     $(document).on('click', '.mystic-plus', function(){
         let count = $(this).prev().text();
-        console.log(count);
         let product_id = $(this).closest('.row').find('.product-id').val();
         let order_id = $(this).closest('.row').find('.order-id').val();
         count++;
-        console.log(count);
-        if(count>1){
-            $(this).prev().prev().removeClass('disabled')
-        };
         
     	$.ajax({
     		type: 'GET',
@@ -35,20 +30,15 @@ $(document).ready(function(){
         let product_id = $(this).closest('.row').find('.product-id').val();
         let order_id = $(this).closest('.row').find('.order-id').val();
         if(count>1){
-            count--;
-            $(this).next().text(count);
-            $(this).parent().parent().next().children('.pricetag').text('calculation');
-        }
-        if(count==1){
-            $(this).addClass('disabled')
-        }
-        
-    	$.ajax({
-    		type: 'GET',
-    		dataType: 'json',
-    		url: 'editCart.do?order_id='+order_id+'&product_id='+product_id+'&product_count='+count,
-    		success: refresh
-    	});
+        	count--;
+            
+        	$.ajax({
+        		type: 'GET',
+        		dataType: 'json',
+        		url: 'editCart.do?order_id='+order_id+'&product_id='+product_id+'&product_count='+count,
+        		success: refresh
+        	});
+        };	
     });
     
     
@@ -57,6 +47,7 @@ $(document).ready(function(){
         let product_id = $(this).next().next().val();
         console.log(order_id);
         console.log(product_id);
+        
     	$.ajax({
     		type: 'GET',
     		dataType: 'json',
@@ -65,12 +56,22 @@ $(document).ready(function(){
     	});
     });
     
+    $(document).on('click', '.purchase', function(){   	
+    	$.ajax({
+    		type: 'GET',
+    		url: 'purchase.do',
+    	});
+    	$('#cartList').empty();
+    	$('.purchase').addClass('disabled')
+    	alert('상품 주문이 접수되었습니다.');
+    })
+    
     function refresh(cartList){
     	$('#cartList').empty();
 		$.each(cartList, function(index, cart){			
 			$('#cartList').append(`<div class="container border-bottom my-2 py-3">			
 				<div class="row">
-					<div class="col-sm-8 container align-self-center">
+					<div class="col-sm-7 container align-self-center">
 						<div class="row">
 							<div class="col-sm-2 align-self-center">
 								<button type="button" class="btn btn-outline-dark delete-cart">
@@ -96,12 +97,33 @@ $(document).ready(function(){
 								<button type="button" class="btn btn-outline-dark mystic-plus">+</button>
 						</div>
 					</div>
-					<div class="col-sm-2 align-self-center text-end">
+					<div class="col-sm-3 align-self-center text-end">
 						<span class="pricetag" style="font-size:20px">\${cart.shopDTO.price*cart.product_count}</span><span style="font-size:14px">&nbsp;원</span>
 					</div>
 				</div>			
-			</div>`);		
+			</div>`);				
+			
     	});
+		
+		$('.mystic-content').each(function(){
+	        if ($(this).text() === '1') {
+	            $(this).siblings('.mystic-minus').addClass('disabled');
+	        }
+	    });
+		
+		
+		let totalPrice = 0;
+		
+		$('.pricetag').each(function(){
+			let price = 0;
+			price = $(this).text();
+			totalPrice += parseInt(price);
+			$(this).text(parseInt(price).toLocaleString());
+		})
+
+		$('#totalPrice').empty();
+		$('#totalPrice').text(totalPrice.toLocaleString());
+
     };
 });
 </script> 
@@ -121,12 +143,12 @@ $(document).ready(function(){
 						<span style="font-size:16px;font-weight:600">총 결제예정금액</span>
 					</div>
 					<div class="border-bottom mb-3" style="text-align:right">
-						<span style="font-size:32px;font-weight:900">67,000</span>
+						<span style="font-size:32px;font-weight:900" id="totalPrice"></span>
 						<span>원</span>
 					</div>
 					<div>
 						<div class="d-grid gap-2">
-						  <button class="btn btn-success" type="button">주문하기</button>
+						  <button class="btn btn-success purchase" type="button" action="">주문하기</button>
 						</div>	
 					</div>
 				</div>

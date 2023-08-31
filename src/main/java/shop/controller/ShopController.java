@@ -2,6 +2,7 @@ package shop.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import member.dto.AuthInfo;
 import member.dto.MemberDTO;
 import member.service.MemberService;
 import shop.dto.CartDTO;
+import shop.dto.ShopDTO;
 import shop.dto.ShopPageDTO;
 import shop.service.ShopService;
 
@@ -65,11 +67,12 @@ public class ShopController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="/shop/addCart.do")
-	public void addCartExecute(CartDTO cartDTO, HttpSession httpSession) {
+	@RequestMapping(value="/shop/addCart.do", produces = "application/text; charset=UTF-8")
+	public String addCartExecute(CartDTO cartDTO, HttpSession httpSession, HttpServletResponse response) {
+		response.setCharacterEncoding("UTF-8");
 		AuthInfo authInfo = (AuthInfo) httpSession.getAttribute("authInfo");
 		MemberDTO memberDTO = memberService.editProcess(authInfo.getMember_id());
-		shopService.addCartProcess(cartDTO, memberDTO);
+		return shopService.addCartProcess(cartDTO, memberDTO);
 	}
 	
 	@ResponseBody
@@ -96,6 +99,46 @@ public class ShopController {
 		AuthInfo authInfo = (AuthInfo) httpSession.getAttribute("authInfo");
 		MemberDTO memberDTO = memberService.editProcess(authInfo.getMember_id());
 		return shopService.listCartProcess(memberDTO);
+	}
+	
+	@RequestMapping(value="/search.do")
+	public ModelAndView searchExecute(String keyword, ModelAndView mav,@ModelAttribute("sp") ShopPageDTO sp) {
+		int resultCount = shopService.countResultProcess(keyword);
+		if(resultCount!=0) {
+			if(sp.getCurrentPage()==0) {
+				sp.setCurrentPage(1); 
+			}
+			this.spdto = new ShopPageDTO(sp.getCurrentPage(), resultCount);
+			mav.addObject("sp", this.spdto);
+			mav.addObject("shopList", shopService.searchProcess(keyword));
+		}
+		mav.setViewName("shop");
+		return mav;
+	}
+	
+	@RequestMapping(value="/category.do")
+	public ModelAndView categoryExecute(String category, ModelAndView mav, @ModelAttribute("sp") ShopPageDTO sp) {
+		System.out.println(category);
+		int resultCount = shopService.countCategoryProcess(category);
+		System.out.println(resultCount);
+		if(resultCount!=0) {
+			if(sp.getCurrentPage()==0) {
+				sp.setCurrentPage(1); 
+			}
+			this.spdto = new ShopPageDTO(sp.getCurrentPage(), resultCount);
+			mav.addObject("sp", this.spdto);
+			mav.addObject("shopList", shopService.categoryProcess(category));
+		}
+		mav.setViewName("shop");
+		return mav;
+	}
+	
+	@RequestMapping(value="/member/purchase.do")
+	public void purchaseExecute(HttpSession httpSession) {
+		AuthInfo authInfo = (AuthInfo) httpSession.getAttribute("authInfo");
+		MemberDTO memberDTO = memberService.editProcess(authInfo.getMember_id());
+		shopService.purchaseProcess(memberDTO);
+		System.out.println("authInfo : " + authInfo.getMember_id());
 	}
 	
 }

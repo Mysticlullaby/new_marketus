@@ -66,4 +66,41 @@
 		WHERE order_id=#{order_id} AND product_id=#{product_id}
 	</update>
 	
+	<select id="cartCheck" parameterType="shop.dto.CartDTO" resultType="shop.dto.CartDTO">
+		SELECT * FROM cart
+		WHERE order_id=#{order_id} AND product_id=#{product_id}
+	</select>
+	
+	<select id="search" parameterType="string" resultType="shop.dto.ShopDTO">
+		SELECT * FROM product
+		WHERE product_name LIKE '%' || #{keyword} || '%'
+	</select>
+	
+	<select id="countResult" parameterType="string" resultType="int">
+		SELECT count(*) FROM product
+		WHERE product_name LIKE '%' || #{keyword} || '%'
+	</select>
+	
+	<select id="category" parameterType="string" resultType="shop.dto.ShopDTO">
+		SELECT * FROM product
+		WHERE category LIKE '%' || #{category} || '%'
+	</select>
+	
+	<select id="countCategory" parameterType="string" resultType="int">
+		SELECT count(*) FROM product
+		WHERE category LIKE '%' || #{category} || '%'
+	</select>
+	
+	<update id="purchase" parameterType="shop.dto.OrderInfoDTO">
+		UPDATE order_info
+		SET status='inOrder'
+		WHERE order_id=#{order_id}
+	</update>
+	
+	<update id="addSellCount" parameterType="shop.dto.ShopDTO">
+		UPDATE product
+		SET sellCount= sellCount + #{sellCount}
+		WHERE product_id=#{product_id}
+	</update>
+	
 </mapper>

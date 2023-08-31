@@ -15,7 +15,7 @@ public interface ShopService {
 	
 	public ShopDTO productProcess(int product_id);
 	
-	public void addCartProcess(CartDTO cartDTO, MemberDTO memberDTO);
+	public String addCartProcess(CartDTO cartDTO, MemberDTO memberDTO);
 	
 	public List<CartDTO> listCartProcess(MemberDTO memberDTO);
 	
@@ -24,4 +24,14 @@ public interface ShopService {
 	public void deleteCartProcess(CartDTO cartDTO);
 	
 	public void editCartProcess(CartDTO cartDTO);
+	
+	public List<ShopDTO> searchProcess(String keyword);
+	
+	public int countResultProcess(String keyword);
+	
+	public List<ShopDTO> categoryProcess(String category);
+	
+	public int countCategoryProcess(String category);
+	
+	public void purchaseProcess(MemberDTO memberDTO);
 }

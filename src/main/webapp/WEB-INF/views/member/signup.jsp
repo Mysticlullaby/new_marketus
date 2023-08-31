@@ -11,7 +11,7 @@
 		 let member_id = $("#member_id").val();
 		 
 		 $.ajax({
-			 url : "http://localhost:8090/marketus/member/idCheck.do",
+			 url : "http://172.16.141.26:8090/marketus/member/idCheck.do",
 			 type : "post",
 			 data : {member_id: member_id},
 			 dataType : 'json',
@@ -26,7 +26,7 @@
 					 idDupAvailable = true;
 				 }
 			 },
-			 error : function(){
+			 error : function(err){
 				 alert("서버 요청 실패");
 			 }
 		 })

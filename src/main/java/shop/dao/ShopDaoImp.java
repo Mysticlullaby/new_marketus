@@ -67,4 +67,40 @@ public class ShopDaoImp implements ShopDAO{
 		sqlSession.update("shop.editCart", cartDTO);		
 	}
 
+	@Override
+	public CartDTO cartCheck(CartDTO cartDTO) {
+		return sqlSession.selectOne("shop.cartCheck", cartDTO);
+	}
+
+	@Override
+	public List<ShopDTO> search(String keyword) {
+		return sqlSession.selectList("shop.search", keyword);
+	}
+
+	@Override
+	public int countResult(String keyword) {
+		return sqlSession.selectOne("shop.countResult", keyword);
+	}
+
+	@Override
+	public List<ShopDTO> category(String category) {
+		return sqlSession.selectList("shop.category", category);
+	}
+
+	@Override
+	public int countCategory(String category) {
+		return sqlSession.selectOne("shop.countCategory", category);
+	}
+
+	@Override
+	public void purchase(OrderInfoDTO orderInfoDTO) {
+		sqlSession.update("shop.purchase", orderInfoDTO);
+		
+	}
+
+	@Override
+	public void addSellCount(ShopDTO shopDTO) {
+		sqlSession.update("shop.addSellCount", shopDTO);
+	}
+
 }
