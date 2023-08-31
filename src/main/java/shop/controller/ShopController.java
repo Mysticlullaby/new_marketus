@@ -1,5 +1,6 @@
 package shop.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -40,8 +41,13 @@ public class ShopController {
 	}
 	
 	@RequestMapping(value="/mainhome.do")
-	public String homeExecute() {
-		return "mainhome";
+	public ModelAndView homeExecute(ModelAndView mav) {
+		List<ShopDTO> shopList = shopService.getWeeklyHotProcess();
+		for(ShopDTO product: shopList) {
+			System.out.println("(controller)" + product.getProduct_name());
+		}
+		mav.addObject("shopList", shopList);
+		return mav;
 	}
 	
 	@RequestMapping(value="/shop.do")

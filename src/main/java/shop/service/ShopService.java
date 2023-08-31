@@ -34,4 +34,6 @@ public interface ShopService {
 	public int countCategoryProcess(String category);
 	
 	public void purchaseProcess(MemberDTO memberDTO);
+	
+	public List<ShopDTO> getWeeklyHotProcess();
 }

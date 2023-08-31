@@ -1,5 +1,6 @@
 package shop.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import member.dto.MemberDTO;
@@ -127,6 +128,17 @@ public class ShopServiceImp implements ShopService{
 		}
 		System.out.println("orderInfo : " + orderInfo.getOrder_id());
 		shopDao.purchase(orderInfo);
+	}
+
+	@Override
+	public List<ShopDTO> getWeeklyHotProcess() {
+		List<Integer> idList = shopDao.getWeeklyHotId();
+		List<ShopDTO> productList = new ArrayList<ShopDTO>();
+		for(Integer id : idList) {
+			System.out.println(shopDao.product(id).getProduct_name());
+			productList.add(shopDao.product(id));
+		}
+		return productList;
 	}
 
 }
