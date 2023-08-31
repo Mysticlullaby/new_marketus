@@ -65,7 +65,7 @@
 				    </ul>				    
 				  </div>
 				  
-				  <div class="flex-shrink-0 p-3" style="width: 100%;">
+				  <!-- <div class="flex-shrink-0 p-3" style="width: 100%;">
 				    <span class="fs-7 fw-semibold">정렬 순서</span>
 				    <ul class="list-unstyled ps-0">
 				      <li class="border-top my-3"></li>
@@ -92,7 +92,7 @@
 				      </li>
 				      <li class="border-top my-3"></li>
 				    </ul>    
-				  </div>
+				  </div> -->
 			  	
 				</div>
 			  </div>
