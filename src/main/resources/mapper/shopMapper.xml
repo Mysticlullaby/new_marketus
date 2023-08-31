@@ -116,7 +116,7 @@
 		           ORDER BY sum(product_count) DESC
 		           )a)b
 		WHERE b.rm>=1 AND b.rm<=4
-		]]>
+		]]> 
 	</select>
 	
 </mapper>
