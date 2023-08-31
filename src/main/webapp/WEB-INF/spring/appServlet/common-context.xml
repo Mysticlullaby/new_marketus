@@ -10,7 +10,7 @@
 	<!-- [1] DataSource 빈 선언 -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
-		<property name="url" value="jdbc:oracle:thin:@172.16.141.26:1521:xe"/>
+		<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:xe"/>
 		<property name="username" value="hr"/>
 		<property name="password" value="a1234"/>		
 	</bean>

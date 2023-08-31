@@ -52,7 +52,6 @@ public class MemberController {
 	// 회원가입 중복체크
 	@RequestMapping(value="member/idCheck.do")
 	public @ResponseBody int memberidCheck(String member_id) {
-		System.out.println(member_id);
 		int result = memberService.memberidCheck(member_id);
 		return result;
 	}
