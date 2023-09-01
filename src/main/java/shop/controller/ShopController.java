@@ -42,11 +42,9 @@ public class ShopController {
 	
 	@RequestMapping(value="/mainhome.do")
 	public ModelAndView homeExecute(ModelAndView mav) {
-		List<ShopDTO> shopList = shopService.getWeeklyHotProcess();
-		for(ShopDTO product: shopList) {
-			System.out.println("(controller)" + product.getProduct_name());
-		}
-		mav.addObject("shopList", shopList);
+		mav.addObject("shopList", shopService.getWeeklyHotProcess());
+		mav.addObject("shopListM", shopService.getMonthlyHotProcess());
+		mav.setViewName("mainhome");
 		return mav;
 	}
 	

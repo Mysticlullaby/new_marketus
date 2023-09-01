@@ -108,4 +108,9 @@ public class ShopDaoImp implements ShopDAO{
 		return sqlSession.selectList("shop.getWeeklyHotId", sqlSession);
 	}
 
+	@Override
+	public List<Integer> getMonthlyHotId() {
+		return sqlSession.selectList("shop.getMonthlyHotId", sqlSession);
+	}
+
 }

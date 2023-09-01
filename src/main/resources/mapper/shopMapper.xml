@@ -119,4 +119,20 @@
 		]]> 
 	</select>
 	
+	<select id="getMonthlyHotId" resultType="int">
+		<![CDATA[
+		SELECT b.product_id
+		FROM(SELECT rownum as rm, a.*
+		     FROM (SELECT product_id
+		           FROM (SELECT o.*, c.product_id, c.product_count 
+		                 FROM order_info o
+		                 JOIN cart c ON o.order_id = c.order_id
+		                 WHERE to_date(order_date, 'yyyy-mm-dd hh24:mi:ss') > sysdate - 30 AND status!='inCart')
+		           GROUP BY product_id
+		           ORDER BY sum(product_count) DESC
+		           )a)b
+		WHERE b.rm>=1 AND b.rm<=4
+		]]> 
+	</select>
+	
 </mapper>

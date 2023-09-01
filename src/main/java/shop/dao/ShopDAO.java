@@ -44,4 +44,6 @@ public interface ShopDAO {
 	public void addSellCount(ShopDTO shopDTO);
 	
 	public List<Integer> getWeeklyHotId();
+	
+	public List<Integer> getMonthlyHotId();
 }
