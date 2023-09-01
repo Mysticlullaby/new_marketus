@@ -36,4 +36,6 @@ public interface ShopService {
 	public void purchaseProcess(MemberDTO memberDTO);
 	
 	public List<ShopDTO> getWeeklyHotProcess();
+	
+	public List<ShopDTO> getMonthlyHotProcess();
 }

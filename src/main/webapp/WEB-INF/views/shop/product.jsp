@@ -33,13 +33,19 @@
 	    	let count = $('#count').val();
 	    	let product_id = $('#product_id').val();
 	    	
-	    	$.ajax({
-	    		type: 'GET',
-	    		dataType: 'text',
-	    		contentType : 'application/text; charset:UTF-8',
-	    		url: 'addCart.do?product_count='+count+'&product_id='+product_id,
-	    		success: viewMessage
-	    	});
+	    	if(${sessionScope.authInfo != null}){
+	    		$.ajax({
+		    		type: 'GET',
+		    		dataType: 'text',
+		    		contentType : 'application/text; charset:UTF-8',
+		    		url: 'addCart.do?product_count='+count+'&product_id='+product_id,
+		    		success: viewMessage
+		    	});
+	    	} else {
+	    		alert('로그인 후 이용 가능합니다.');
+	    		$(location).attr("href", "${pageContext.request.contextPath}/member/login.do");
+	    	}
+	    	
 	    });
 
 	    function viewMessage(message){

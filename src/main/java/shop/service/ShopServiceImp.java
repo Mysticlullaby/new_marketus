@@ -141,4 +141,15 @@ public class ShopServiceImp implements ShopService{
 		return productList;
 	}
 
+	@Override
+	public List<ShopDTO> getMonthlyHotProcess() {
+		List<Integer> idList = shopDao.getMonthlyHotId();
+		List<ShopDTO> productList = new ArrayList<ShopDTO>();
+		for(Integer id : idList) {
+			System.out.println(shopDao.product(id).getProduct_name());
+			productList.add(shopDao.product(id));
+		}
+		return productList;
+	}
+
 }
